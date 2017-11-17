@@ -336,6 +336,12 @@ typedef Eo Efl_Ui_Focus_Manager;
 # include <efl_selection.eo.h>
 # include <efl_ui_dnd.eo.h>
 # include <efl_ui_dnd_container.eo.h>
+
+# ifndef _EFL_UI_PAGER_EO_CLASS_TYPE
+# define _EFL_UI_PAGER_EO_CLASS_TYPE
+typedef Eo Efl_Ui_Pager;
+# endif
+
 # include <efl_page_transition.eo.h>
 # include <efl_page_transition_scroll.eo.h>
 # include <efl_ui_pager.eo.h>
