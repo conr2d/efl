@@ -102,6 +102,7 @@ elm_public_eolian_files = \
 	lib/elementary/efl_ui_dnd.eo \
 	lib/elementary/efl_ui_dnd_container.eo \
 	lib/elementary/efl_ui_focus_manager_window_root.eo \
+	lib/elementary/efl_ui_model_state.eo \
 	$(NULL)
 
 # More public files -- FIXME
