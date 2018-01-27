@@ -22,6 +22,7 @@
 
 typedef struct _Elm_Fileselector_Filter Elm_Fileselector_Filter;
 typedef struct _Listing_Request Listing_Request;
+typedef struct _Fetch_One Fetch_One;
 typedef struct _Elm_Fileselector_Item_Data Elm_Fileselector_Item_Data;
 
 /**
@@ -104,8 +105,15 @@ struct _Listing_Request
    Eina_Stringshare            *selected_path;
    int                          item_total;
    int                          item_processed_count;
+
    Eina_Bool                    first : 1;
    Eina_Bool                    valid : 1;
+};
+
+struct _Fetch_One
+{
+   Evas_Object *fs;
+   unsigned int index;
 };
 
 struct _Elm_Fileselector_Item_Data
@@ -114,11 +122,15 @@ struct _Elm_Fileselector_Item_Data
    Efl_Model                   *model;
    Eina_Stringshare            *path;
    Eina_Stringshare            *filename;
-   int64_t                      size;
-   double                       mtime;
    Eina_Stringshare            *mime_type;
    Efl_Model                   *parent_model;
    const char                  *parent_path;
+
+   int64_t                      size;
+   double                       mtime;
+
+   unsigned int                 index;
+
    Eina_Bool                    is_dir : 1;
 };
 
