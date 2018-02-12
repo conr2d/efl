@@ -27,7 +27,10 @@ _setup(void)
 {
    fake_server = fake_server_start(&fake_server_data);
 
-   fake_server_object = efl_add(ELDBUS_MODEL_OBJECT_CLASS, efl_main_loop_get(), eldbus_model_object_custom_constructor(efl_added, ELDBUS_CONNECTION_TYPE_SESSION, NULL, EINA_FALSE, FAKE_SERVER_BUS, FAKE_SERVER_PATH));
+   fake_server_object = efl_add(ELDBUS_MODEL_OBJECT_CLASS, efl_main_loop_get(),
+                                eldbus_model_connect(efl_added, ELDBUS_CONNECTION_TYPE_SESSION, NULL, EINA_FALSE),
+                                eldbus_model_object_bus_set(efl_added, FAKE_SERVER_BUS),
+                                eldbus_model_object_path_set(efl_added, FAKE_SERVER_PATH));
    ck_assert_ptr_ne(NULL, fake_server_object);
 
    fake_server_proxy = eldbus_model_proxy_from_object_get(fake_server_object, FAKE_SERVER_INTERFACE);
@@ -60,26 +63,50 @@ EFL_END_TEST
 EFL_START_TEST(property_get)
 {
    // Input only property returns error
-   Efl_Future *future;
-   future = efl_model_property_get(method, ARGUMENT_A);
-   check_efl_model_future_error(future, NULL);
+   Eina_Value *v;
 
-   future = efl_model_property_get(method, ARGUMENT_RESULT);
-   efl_model_future_then(future);
+   v = efl_model_property_get(method, ARGUMENT_A);
+   fail_if(v != NULL);
+
+   v = efl_model_property_get(method, ARGUMENT_RESULT);
+   fail_if(v != NULL);
 
    // Nonexistent property returns error
-   future = efl_model_property_get(method, "nonexistent");
-   check_efl_model_future_error(future, NULL);
+   v = efl_model_property_get(method, "nonexistent");
+   fail_if(v != NULL);
 }
 EFL_END_TEST
+
+static Eina_Value
+_expected_error(void *data,
+                const Eina_Value v,
+                const Eina_Future *dead_future EINA_UNUSED)
+{
+   fail_if(eina_value_type_get(&v) != EINA_VALUE_TYPE_ERROR);
+
+   if (data)
+     {
+        Eina_Error *expected = data;
+        Eina_Error error;
+
+        eina_value_error_get(&v, &error);
+
+        fail_if(*expected != error);
+     }
+
+   ecore_main_loop_quit();
+
+   return v;
+}
 
 EFL_START_TEST(property_set)
 {
    // Output argument returns error
-   Efl_Future *future;
-   Eina_Value dummy = {0};
+   Eina_Future *future;
+   Eina_Value dummy = EINA_VALUE_EMPTY;
+
    future = efl_model_property_set(method, ARGUMENT_RESULT, &dummy);
-   check_efl_model_future_error(future, NULL);
+   eina_future_then(future, _expected_error, NULL);
 }
 EFL_END_TEST
 
@@ -97,9 +124,10 @@ EFL_END_TEST
 
 EFL_START_TEST(children_slice_get)
 {
-   Efl_Future *future;
+   Eina_Future *future;
+
    future = efl_model_children_slice_get(method, 1, 1);
-   check_efl_model_future_error(future, &EFL_MODEL_ERROR_NOT_SUPPORTED);
+   eina_future_then(future, _expected_error, &EFL_MODEL_ERROR_NOT_SUPPORTED);
 }
 EFL_END_TEST
 
