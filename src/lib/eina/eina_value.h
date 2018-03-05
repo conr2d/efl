@@ -1828,6 +1828,7 @@ static inline Eina_Bool eina_value_array_value_get(const Eina_Value *src,
 /**
  * @def EINA_VALUE_ARRAY_FOREACH
  * @brief Definition for the macro to iterate over an array contained in an Eina_Value.
+ * @since 1.21
  *
  * @param array The list to iterate over.
  * @param length Contain the length of the array
@@ -1850,7 +1851,7 @@ static inline Eina_Bool eina_value_array_value_get(const Eina_Value *src,
  * // EINA_VALUE_ARRAY_FOREACH will be used to check if there is no error
  *
  *
- * EINA_VALUE_ARRAY_FOREACH(&array, len, i, &v)
+ * EINA_VALUE_ARRAY_FOREACH(&array, len, i, v)
  *   {
  *      if (v.type == EINA_VALUE_TYPE_ERROR)
  *        {
@@ -1866,10 +1867,10 @@ static inline Eina_Bool eina_value_array_value_get(const Eina_Value *src,
 #define EINA_VALUE_ARRAY_FOREACH(Array, Length, It, Value) \
   for (Length = eina_value_array_count(Array),             \
          It = 0,                                           \
-         eina_value_array_get(Array, It, Value);           \
+         eina_value_array_get(Array, It, &Value);          \
        It < Length;                                        \
        It++,                                               \
-         eina_value_array_get(Array, It, Value))
+         eina_value_array_get(Array, It, &Value))
 
 /**
  * @}
