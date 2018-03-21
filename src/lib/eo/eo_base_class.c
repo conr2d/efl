@@ -137,7 +137,19 @@ _efl_invalidate(Eo *obj)
 static void
 _efl_object_invalidate(Eo *obj, Efl_Object_Data *pd)
 {
+   Eina_Inlist *l;
+   _Eo_Object *child;
+
    _efl_pending_futures_clear(pd);
+
+   // Invalidate all children too
+   EINA_INLIST_FOREACH_SAFE(pd->children, l, child)
+     {
+        Eo *obj = _eo_obj_id_get(child);
+        efl_parent_set(obj, NULL);
+     }
+
+   // Finally invalidate itself
    efl_parent_set(obj, NULL);
    pd->invalidate = EINA_TRUE;
 }
