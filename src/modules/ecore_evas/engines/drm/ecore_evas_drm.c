@@ -854,6 +854,7 @@ _cb_pageflip(int fd EINA_UNUSED, unsigned int frame EINA_UNUSED, unsigned int se
    if (edata->ticking)
      {
         Ecore_Evas_Engine_Drm_Tick *etick;
+<<<<<<< HEAD
 
         etick = _drm_tick_find(edata, output);
         if (etick)
@@ -863,6 +864,17 @@ _cb_pageflip(int fd EINA_UNUSED, unsigned int frame EINA_UNUSED, unsigned int se
 
              ecore_drm2_output_info_get(output, &x, &y, &w, &h, NULL);
 
+=======
+
+        etick = _drm_tick_find(edata, output);
+        if (etick)
+          {
+             int x, y, w, h;
+             double t = (double)sec + ((double)usec / 1000000);
+
+             ecore_drm2_output_info_get(output, &x, &y, &w, &h, NULL);
+
+>>>>>>> ff44c6859b... ecore-evas-drm: Add support for per-output ticking
              if (!edata->once) t = ecore_time_get();
              ecore_evas_animator_tick(ee, &(Eina_Rectangle){x, y, w, h},
                                       t - etick->offset);
@@ -1034,6 +1046,7 @@ _drm_last_tick_get(Ecore_Evas *ee)
    Eina_List *l;
    long sec, usec;
    double tmp = -1.0;
+<<<<<<< HEAD
 
    edata = ee->engine.data;
 
@@ -1061,6 +1074,35 @@ _drm_output_clone_set(const Ecore_Evas *ee, void *output, void *clone)
 
    edata = ee->engine.data;
 
+=======
+
+   edata = ee->engine.data;
+
+   EINA_LIST_FOREACH(edata->outputs, l, output)
+     {
+        if (ecore_drm2_output_blanktime_get(output, 0, &sec, &usec))
+          {
+             if ((sec + usec / 1000000.0) > tmp)
+               tmp = sec + usec / 1000000.0;
+          }
+     }
+
+   return tmp;
+}
+
+static Eina_Bool
+_drm_output_clone_set(const Ecore_Evas *ee, void *output, void *clone)
+{
+   Ecore_Evas_Engine_Drm_Data *edata;
+   Ecore_Drm2_Output *out, *cout;
+   Ecore_Evas_Engine_Drm_Tick *etick;
+   Evas_Engine_Info_Drm *einfo;
+
+   EINA_SAFETY_ON_NULL_RETURN_VAL(output, EINA_FALSE);
+
+   edata = ee->engine.data;
+
+>>>>>>> ff44c6859b... ecore-evas-drm: Add support for per-output ticking
    out = (Ecore_Drm2_Output *)output;
    cout = (Ecore_Drm2_Output *)clone;
 
