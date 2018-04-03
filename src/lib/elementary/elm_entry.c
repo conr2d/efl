@@ -3,7 +3,7 @@
 #endif
 
 #define EFL_LAYOUT_CALC_PROTECTED
-#define EFL_ACCESS_PROTECTED
+#define EFL_ACCESS_OBJECT_PROTECTED
 #define EFL_ACCESS_TEXT_PROTECTED
 #define EFL_ACCESS_EDITABLE_TEXT_PROTECTED
 #define ELM_LAYOUT_PROTECTED
@@ -2221,14 +2221,14 @@ _entry_changed_user_signal_cb(void *data,
              atspi_info.content = edje_info->change.insert.content;
              atspi_info.pos = edje_info->change.insert.pos;
              atspi_info.len = edje_info->change.insert.plain_length;
-             efl_access_event_emit(EFL_ACCESS_MIXIN, data, EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_INSERTED, &atspi_info);
+             efl_access_object_event_emit(EFL_ACCESS_OBJECT_MIXIN, data, EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_INSERTED, &atspi_info);
           }
         else if (edje_info && !edje_info->insert)
           {
              atspi_info.content = edje_info->change.del.content;
              atspi_info.pos = MIN(edje_info->change.del.start, edje_info->change.del.end);
              atspi_info.len = MAX(edje_info->change.del.start, edje_info->change.del.end) - atspi_info.pos;
-             efl_access_event_emit(EFL_ACCESS_MIXIN, data, EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_REMOVED, &atspi_info);
+             efl_access_object_event_emit(EFL_ACCESS_OBJECT_MIXIN, data, EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_REMOVED, &atspi_info);
           }
      }
 }
@@ -2253,7 +2253,7 @@ _entry_preedit_changed_signal_cb(void *data,
              atspi_info.content = text;
              atspi_info.pos = edje_info->change.insert.pos;
              atspi_info.len = edje_info->change.insert.plain_length;
-             efl_access_event_emit(EFL_ACCESS_MIXIN,
+             efl_access_object_event_emit(EFL_ACCESS_OBJECT_MIXIN,
                                                        data,
                                                        EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_INSERTED,
                                                        &atspi_info);
@@ -2344,7 +2344,7 @@ _entry_selection_changed_signal_job_cb(void *data)
      _selection_store(ELM_SEL_TYPE_PRIMARY, data);
    _update_selection_handler(data);
    if (_elm_config->atspi_mode)
-     efl_access_event_emit(EFL_ACCESS_MIXIN, data, EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_SELECTION_CHANGED, NULL);
+     efl_access_object_event_emit(EFL_ACCESS_OBJECT_MIXIN, data, EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_SELECTION_CHANGED, NULL);
    return EINA_FALSE;
 }
 
@@ -2468,7 +2468,7 @@ _entry_cursor_changed_signal_cb(void *data,
    efl_event_callback_legacy_call(data, ELM_ENTRY_EVENT_CURSOR_CHANGED, NULL);
 
    if (_elm_config->atspi_mode)
-     efl_access_event_emit(EFL_ACCESS_MIXIN, data, EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_CARET_MOVED, NULL);
+     efl_access_object_event_emit(EFL_ACCESS_OBJECT_MIXIN, data, EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_CARET_MOVED, NULL);
 }
 
 static void
@@ -2480,7 +2480,7 @@ _entry_cursor_changed_manual_signal_cb(void *data,
    efl_event_callback_legacy_call
      (data, ELM_ENTRY_EVENT_CURSOR_CHANGED_MANUAL, NULL);
    if (_elm_config->atspi_mode)
-     efl_access_event_emit(EFL_ACCESS_MIXIN, data, EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_CARET_MOVED, NULL);
+     efl_access_object_event_emit(EFL_ACCESS_OBJECT_MIXIN, data, EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_CARET_MOVED, NULL);
 }
 
 static void
@@ -4121,7 +4121,7 @@ _elm_entry_efl_object_constructor(Eo *obj, Elm_Entry_Data *_pd EINA_UNUSED)
    obj = efl_constructor(efl_super(obj, MY_CLASS));
    efl_canvas_object_type_set(obj, MY_CLASS_NAME_LEGACY);
    evas_object_smart_callbacks_descriptions_set(obj, _smart_callbacks);
-   efl_access_role_set(obj, EFL_ACCESS_ROLE_ENTRY);
+   efl_access_object_role_set(obj, EFL_ACCESS_ROLE_ENTRY);
    efl_event_callback_add(obj, EFL_EVENT_CALLBACK_ADD, _cb_added, NULL);
    efl_event_callback_add(obj, EFL_EVENT_CALLBACK_DEL, _cb_deleted, NULL);
 
@@ -4206,7 +4206,7 @@ _elm_entry_password_set(Eo *obj, Elm_Entry_Data *sd, Eina_Bool password)
         sd->line_wrap = ELM_WRAP_NONE;
         elm_entry_input_hint_set(obj, ((sd->input_hints & ~ELM_INPUT_HINT_AUTO_COMPLETE) | ELM_INPUT_HINT_SENSITIVE_DATA));
         _entry_selection_callbacks_unregister(obj);
-        efl_access_role_set(obj, EFL_ACCESS_ROLE_PASSWORD_TEXT);
+        efl_access_object_role_set(obj, EFL_ACCESS_ROLE_PASSWORD_TEXT);
      }
    else
      {
@@ -4219,7 +4219,7 @@ _elm_entry_password_set(Eo *obj, Elm_Entry_Data *sd, Eina_Bool password)
 
         elm_entry_input_hint_set(obj, ((sd->input_hints | ELM_INPUT_HINT_AUTO_COMPLETE) & ~ELM_INPUT_HINT_SENSITIVE_DATA));
         _entry_selection_callbacks_register(obj);
-        efl_access_role_set(obj, EFL_ACCESS_ROLE_ENTRY);
+        efl_access_object_role_set(obj, EFL_ACCESS_ROLE_ENTRY);
      }
 
    efl_ui_widget_theme_apply(obj);
@@ -6111,10 +6111,10 @@ _elm_entry_efl_access_editable_text_cut(Eo *obj, Elm_Entry_Data *_pd EINA_UNUSED
 }
 
 EOLIAN static Efl_Access_State_Set
-_elm_entry_efl_access_state_set_get(Eo *obj, Elm_Entry_Data *_pd EINA_UNUSED)
+_elm_entry_efl_access_object_state_set_get(Eo *obj, Elm_Entry_Data *_pd EINA_UNUSED)
 {
    Efl_Access_State_Set ret;
-   ret = efl_access_state_set_get(efl_super(obj, ELM_ENTRY_CLASS));
+   ret = efl_access_object_state_set_get(efl_super(obj, ELM_ENTRY_CLASS));
 
    if (elm_entry_editable_get(obj))
      STATE_TYPE_SET(ret, EFL_ACCESS_STATE_EDITABLE);
@@ -6123,10 +6123,10 @@ _elm_entry_efl_access_state_set_get(Eo *obj, Elm_Entry_Data *_pd EINA_UNUSED)
 }
 
 EOLIAN static const char*
-_elm_entry_efl_access_i18n_name_get(Eo *obj, Elm_Entry_Data *sd)
+_elm_entry_efl_access_object_i18n_name_get(Eo *obj, Elm_Entry_Data *sd)
 {
    const char *name;
-   name = efl_access_i18n_name_get(efl_super(obj, ELM_ENTRY_CLASS));
+   name = efl_access_object_i18n_name_get(efl_super(obj, ELM_ENTRY_CLASS));
    if (name && strncmp("", name, 1)) return name;
 
    if (sd->password) return NULL;

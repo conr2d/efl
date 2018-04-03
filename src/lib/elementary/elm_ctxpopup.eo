@@ -213,7 +213,7 @@ class Elm.Ctxpopup (Efl.Ui.Layout, Efl.Ui.Focus.Layer, Efl.Access.Widget.Action,
       Efl.Ui.Menu.last_item { get; }
       Efl.Ui.Menu.items { get; }
       Efl.Access.Widget.Action.elm_actions { get; }
-      Efl.Access.state_set { get; }
+      Efl.Access.Object.state_set { get; }
       Efl.Part.part;
    }
    events {
