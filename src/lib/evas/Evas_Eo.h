@@ -200,7 +200,7 @@ struct _Efl_Canvas_Animation_Player_Event_Running
 
 #if defined(EFL_BETA_API_SUPPORT) && defined(EFL_EO_API_SUPPORT)
 
-#include "canvas/efl_canvas_object_event_grabber.eo.h"
+#include "canvas/efl_canvas_event_grabber.eo.h"
 
  /**
  * @defgroup Evas_3D Evas 3D Extensions
