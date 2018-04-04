@@ -38,10 +38,6 @@ static const char *exts[] = {
 #ifdef BUILD_LOADER_WEBP
   ,"webp"
 #endif
-#ifdef BUILD_LOADER_JPEG
-  ,"jpeg"
-  ,"jpg"
-#endif
 #ifdef BUILD_LOADER_TGV
   ,"tgv"
 #endif
@@ -49,7 +45,15 @@ static const char *exts[] = {
   ,"jp2"
   ,"j2k"
 #endif
+/* ADD NEW FORMATS HERE
+ * JPEG MUST BE LAST
+ */
+#ifdef BUILD_LOADER_JPEG
+  ,"jpeg"
+  ,"jpg"
+#endif
 };
+
 
 EFL_START_TEST(evas_object_image_loader)
 {
@@ -396,13 +400,11 @@ EFL_START_TEST(evas_object_image_all_loader_data)
    Evas *e = _setup_evas();
    Evas_Object *obj, *ref;
    Eina_Strbuf *str;
-   unsigned int i;
 
    obj = evas_object_image_add(e);
    ref = evas_object_image_add(e);
    str = eina_strbuf_new();
 
-   for (i = 0; i < sizeof (exts) / sizeof (exts[0]); i++)
      {
         struct stat st;
         int w, h, s, r_w, r_h, r_s;
@@ -411,9 +413,9 @@ EFL_START_TEST(evas_object_image_all_loader_data)
 
         eina_strbuf_reset(str);
 
-        eina_strbuf_append_printf(str, "%s/Pic4-%s.png", TESTS_IMG_DIR, exts[i]);
+        eina_strbuf_append_printf(str, "%s/Pic4-%s.png", TESTS_IMG_DIR, exts[_i]);
 
-        if (stat(eina_strbuf_string_get(str), &st) != 0) continue;
+        if (stat(eina_strbuf_string_get(str), &st) != 0) goto end;
 
         evas_object_image_file_set(obj, eina_strbuf_string_get(str), NULL);
         fail_if(evas_object_image_load_error_get(obj) != EVAS_LOAD_ERROR_NONE);
@@ -424,7 +426,7 @@ EFL_START_TEST(evas_object_image_all_loader_data)
 
         eina_strbuf_reset(str);
 
-        eina_strbuf_append_printf(str, "%s/Pic4.%s", TESTS_IMG_DIR, exts[i]);
+        eina_strbuf_append_printf(str, "%s/Pic4.%s", TESTS_IMG_DIR, exts[_i]);
         evas_object_image_file_set(ref, eina_strbuf_string_get(str), NULL);
         fail_if(evas_object_image_load_error_get(ref) != EVAS_LOAD_ERROR_NONE);
         evas_object_image_size_get(ref, &r_w, &r_h);
@@ -436,7 +438,7 @@ EFL_START_TEST(evas_object_image_all_loader_data)
         fail_if(s != r_s);
         fail_if(c != r_c);
         fail_if(w*4 != s);
-        if (strcmp(exts[i], "jpeg") == 0 || strcmp(exts[i], "jpg") == 0)
+        if (strcmp(exts[_i], "jpeg") == 0 || strcmp(exts[_i], "jpg") == 0)
           {
              //jpeg norm allows a variation of 1 bit per component
              for (int j = 0; j < s * h; j++)
@@ -449,7 +451,7 @@ EFL_START_TEST(evas_object_image_all_loader_data)
              fail_if(memcmp(d, r_d, w * h * 4));
           }
      }
-
+end:
    evas_object_del(obj);
    evas_object_del(ref);
 
@@ -883,9 +885,25 @@ void evas_test_image_object(TCase *tc)
 # if BUILD_LOADER_JP2K
    tcase_add_test(tc, evas_object_image_jp2k_loader_data);
 # endif
-   tcase_add_test(tc, evas_object_image_all_loader_data);
+#ifdef BUILD_LOADER_JPEG
+   /* jpeg takes forever from manual value comparisons */
+   tcase_add_loop_test(tc, evas_object_image_all_loader_data, 0, EINA_C_ARRAY_LENGTH(exts) - 2);
+#else
+   tcase_add_loop_test(tc, evas_object_image_all_loader_data, 0, EINA_C_ARRAY_LENGTH(exts));
+#endif
    tcase_add_test(tc, evas_object_image_buggy);
    tcase_add_test(tc, evas_object_image_map_unmap);
 #endif
    tcase_add_test(tc, evas_object_image_partially_load_orientation);
+}
+
+
+void evas_test_image_object2(TCase *tc)
+{
+#if BUILD_LOADER_PNG
+#ifdef BUILD_LOADER_JPEG
+   /* jpeg takes forever from manual value comparisons */
+   tcase_add_loop_test(tc, evas_object_image_all_loader_data, EINA_C_ARRAY_LENGTH(exts) - 2, EINA_C_ARRAY_LENGTH(exts));
+#endif
+#endif
 }
