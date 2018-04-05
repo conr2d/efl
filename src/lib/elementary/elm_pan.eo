@@ -48,9 +48,9 @@ class Elm.Pan (Efl.Canvas.Group)
    implements {
       Efl.Object.constructor;
       class.constructor;
-      Efl.Gfx.visible { set; }
-      Efl.Gfx.position { set; }
-      Efl.Gfx.size { set; }
+      Efl.Gfx.Object.visible { set; }
+      Efl.Gfx.Object.position { set; }
+      Efl.Gfx.Object.size { set; }
    }
    events {
       changed; [[Called when pan object changed]]

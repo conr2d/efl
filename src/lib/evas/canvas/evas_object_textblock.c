@@ -8182,8 +8182,8 @@ _obstacle_update(Evas_Textblock_Obstacle *obs, Eo *eo_obj)
    Eina_Rect tb_geom, obs_geom;
    Eo *eo_obs = obs->eo_obs;
 
-   obs_geom = efl_gfx_geometry_get(eo_obs);
-   tb_geom = efl_gfx_geometry_get(eo_obj);
+   obs_geom = efl_gfx_object_geometry_get(eo_obs);
+   tb_geom = efl_gfx_object_geometry_get(eo_obj);
 
    obs->x = obs_geom.x - tb_geom.x;
    obs->y = obs_geom.y - tb_geom.y;
@@ -8327,7 +8327,7 @@ _layout_item_obstacle_get(Ctxt *c, Evas_Object_Textblock_Item *it)
    EINA_LIST_FOREACH(c->o->obstacles, i, obs)
      {
         Eina_Bool is_visible;
-        is_visible = efl_gfx_visible_get(obs->eo_obs);
+        is_visible = efl_gfx_object_visible_get(obs->eo_obs);
         if (!is_visible)
            continue;
         if ((obs->y < c->y + it->h) &&
@@ -14316,7 +14316,7 @@ _efl_canvas_text_efl_gfx_filter_filter_data_get(Eo *obj EINA_UNUSED, Efl_Canvas_
 }
 
 EOLIAN static void
-_efl_canvas_text_efl_gfx_filter_filter_source_set(Eo *eo_obj, Efl_Canvas_Text_Data *pd, const char *name, Efl_Gfx *eo_source)
+_efl_canvas_text_efl_gfx_filter_filter_source_set(Eo *eo_obj, Efl_Canvas_Text_Data *pd, const char *name, Efl_Gfx_Object *eo_source)
 {
    Evas_Object_Protected_Data *obj, *source;
    Evas_Filter_Proxy_Binding *pb;
@@ -14369,7 +14369,7 @@ _efl_canvas_text_efl_gfx_filter_filter_source_set(Eo *eo_obj, Efl_Canvas_Text_Da
    evas_object_change(eo_obj, obj);
 }
 
-EOLIAN static Efl_Gfx *
+EOLIAN static Efl_Gfx_Object *
 _efl_canvas_text_efl_gfx_filter_filter_source_get(Eo *obj EINA_UNUSED, Efl_Canvas_Text_Data *pd, const char *name)
 {
    return eina_hash_find(pd->gfx_filter.sources, name);
@@ -14617,12 +14617,12 @@ evas_object_textblock_was_opaque(Evas_Object *eo_obj EINA_UNUSED,
 }
 
 EOLIAN static void
-_efl_canvas_text_efl_gfx_scale_set(Evas_Object *eo_obj,
+_efl_canvas_text_efl_gfx_object_scale_set(Evas_Object *eo_obj,
                                        Efl_Canvas_Text_Data *o,
                                        double scale)
 {
-   if (EINA_DBL_EQ(efl_gfx_scale_get(eo_obj), scale)) return;
-   efl_gfx_scale_set(efl_super(eo_obj, MY_CLASS), scale);
+   if (EINA_DBL_EQ(efl_gfx_object_scale_get(eo_obj), scale)) return;
+   efl_gfx_object_scale_set(efl_super(eo_obj, MY_CLASS), scale);
 
    _evas_textblock_invalidate_all(o);
    _evas_textblock_changed(o, eo_obj);

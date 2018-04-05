@@ -92,9 +92,9 @@ class Efl.Ui.Image (Efl.Ui.Widget, Efl.Ui.Clickable, Efl.Ui.Draggable,
       Efl.File.file { get; set; }
       Efl.File.mmap { set; }
       Efl.Gfx.Color.color { set; }
-      Efl.Gfx.visible { set; }
-      Efl.Gfx.position { set; }
-      Efl.Gfx.size { set; }
+      Efl.Gfx.Object.visible { set; }
+      Efl.Gfx.Object.position { set; }
+      Efl.Gfx.Object.size { set; }
       Efl.Gfx.View.view_size { get; }
       Efl.Image.image_size { get; }
       Efl.Image.Load.load_size { get; set; }

@@ -96,7 +96,7 @@ _focus_test_test_size(Eo *obj EINA_UNUSED, Focus_Test_Data *pd, Eina_Rect rect)
 }
 
 EOLIAN static Eina_Rect
-_focus_test_efl_gfx_geometry_get(Eo *obj EINA_UNUSED, Focus_Test_Data *pd)
+_focus_test_efl_gfx_object_geometry_get(Eo *obj EINA_UNUSED, Focus_Test_Data *pd)
 {
    return pd->rect;
 }

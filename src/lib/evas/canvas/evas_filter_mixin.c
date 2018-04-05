@@ -519,7 +519,7 @@ _efl_canvas_filter_internal_efl_gfx_filter_filter_program_get(Eo *eo_obj EINA_UN
 
 EOLIAN static void
 _efl_canvas_filter_internal_efl_gfx_filter_filter_source_set(Eo *eo_obj, Evas_Filter_Data *pd,
-                                                             const char *name, Efl_Gfx *eo_source)
+                                                             const char *name, Efl_Gfx_Object *eo_source)
 {
    Evas_Object_Protected_Data *obj;
    Evas_Filter_Proxy_Binding *pb, *pb_old = NULL;
@@ -604,7 +604,7 @@ update:
    evas_filter_dirty(eo_obj);
 }
 
-EOLIAN static Efl_Gfx *
+EOLIAN static Efl_Gfx_Object *
 _efl_canvas_filter_internal_efl_gfx_filter_filter_source_get(Eo *obj EINA_UNUSED, Evas_Filter_Data *pd,
                                                              const char * name)
 {
