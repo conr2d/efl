@@ -13,7 +13,7 @@
 #include "interfaces/efl_duplicate.eo.c"
 #include "interfaces/efl_image.eo.c"
 #include "interfaces/efl_animated_image.eo.c"
-#include "interfaces/efl_image_load.eo.c"
+#include "interfaces/efl_loadable_image.eo.c"
 #include "interfaces/efl_part.eo.c"
 #include "interfaces/efl_playable.eo.c"
 #include "interfaces/efl_player.eo.c"
