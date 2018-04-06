@@ -462,7 +462,7 @@ _elm_actionslider_text_set(Eo *obj, Elm_Actionslider_Data *_pd EINA_UNUSED, cons
 
    _mirrored_part_fix(obj, &part);
 
-   efl_text_set(efl_part(efl_super(obj, MY_CLASS), part), text);
+   efl_text_container_text_set(efl_part(efl_super(obj, MY_CLASS), part), text);
 
    return int_ret;
 }
@@ -477,7 +477,7 @@ _elm_actionslider_text_get(Eo *obj, Elm_Actionslider_Data *_pd EINA_UNUSED, cons
 
    _mirrored_part_fix(obj, &part);
 
-   text = efl_text_get(efl_part(efl_super(obj, MY_CLASS), part));
+   text = efl_text_container_text_get(efl_part(efl_super(obj, MY_CLASS), part));
 
    return text;
 }

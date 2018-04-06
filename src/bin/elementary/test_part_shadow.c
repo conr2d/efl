@@ -87,7 +87,7 @@ test_part_shadow(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, void *eve
 
    win = efl_add(EFL_UI_WIN_CLASS, efl_main_loop_get(),
                  efl_ui_win_name_set(efl_added, "shadow"),
-                 efl_text_set(efl_added, "Shadow effects"));
+                 efl_text_container_text_set(efl_added, "Shadow effects"));
    efl_event_callback_add(win, EFL_UI_WIN_EVENT_DELETE_REQUEST, _delete_cb, td);
 
    bx = efl_add(EFL_UI_BOX_CLASS, win);
@@ -179,12 +179,12 @@ test_part_shadow(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, void *eve
    efl_gfx_size_hint_weight_set(bt_bx, EFL_GFX_SIZE_HINT_EXPAND, 0);
    efl_pack(bx, bt_bx);
 
-   bt = efl_add(EFL_UI_BUTTON_CLASS, win, efl_text_set(efl_added, "Start"));
+   bt = efl_add(EFL_UI_BUTTON_CLASS, win, efl_text_container_text_set(efl_added, "Start"));
    efl_event_callback_add(bt, EFL_UI_EVENT_CLICKED, pulse_start, td);
    efl_pack(bt_bx, bt);
    td->btn_start = bt;
 
-   bt = efl_add(EFL_UI_BUTTON_CLASS, win, efl_text_set(efl_added, "Stop"));
+   bt = efl_add(EFL_UI_BUTTON_CLASS, win, efl_text_container_text_set(efl_added, "Stop"));
    efl_event_callback_add(bt, EFL_UI_EVENT_CLICKED, pulse_stop, td);
    efl_ui_widget_disabled_set(bt, EINA_TRUE);
    efl_pack(bt_bx, bt);

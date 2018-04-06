@@ -4140,29 +4140,29 @@ EFL_START_TEST(evas_textblock_text_iface)
    const char *utf8;
 
    /* Set text */
-   efl_text_set(tb, "hello world");
+   efl_text_container_text_set(tb, "hello world");
    evas_object_textblock_size_native_get(tb, &bw, &bh);
-   efl_text_set(tb, "hello\nworld");
+   efl_text_container_text_set(tb, "hello\nworld");
    evas_object_textblock_size_native_get(tb, &nw, &nh);
    ck_assert_int_gt(nh, bh);
    ck_assert_int_gt(bw, nw);
-   efl_text_set(tb, "hello\nworld\ngoodbye\nworld");
+   efl_text_container_text_set(tb, "hello\nworld\ngoodbye\nworld");
    evas_object_textblock_size_native_get(tb, &nw, &nh);
    ck_assert_int_ge(nh, bh * 3);
 
    /* Delete text */
-   efl_text_set(tb, "a");
+   efl_text_container_text_set(tb, "a");
    evas_object_textblock_size_native_get(tb, &bw, &bh);
-   efl_text_set(tb, "a\nb");
+   efl_text_container_text_set(tb, "a\nb");
    evas_textblock_cursor_pos_set(cur, 1);
    evas_textblock_cursor_char_delete(cur);
    evas_object_textblock_size_native_get(tb, &nw, &nh);
    ck_assert_int_eq(nh, bh);
 
    /* Paragraph checks */
-   efl_text_set(tb, "d");
+   efl_text_container_text_set(tb, "d");
    evas_object_textblock_size_native_get(tb, &w, &h);
-   efl_text_set(tb, "aa\nb\nc\nd");
+   efl_text_container_text_set(tb, "aa\nb\nc\nd");
    evas_object_textblock_size_native_get(tb, &bw, &bh);
    evas_textblock_cursor_pos_set(cur, 0);
    evas_textblock_cursor_char_delete(cur); // delete 'a'
@@ -4184,20 +4184,20 @@ EFL_START_TEST(evas_textblock_text_iface)
 
    /* Text get */
    utf8 = "a";
-   efl_text_set(tb, utf8);
-   ck_assert_str_eq(utf8, efl_text_get(tb));
+   efl_text_container_text_set(tb, utf8);
+   ck_assert_str_eq(utf8, efl_text_container_text_get(tb));
    utf8 = "a\nb";
-   efl_text_set(tb, utf8);
-   ck_assert_str_eq(utf8, efl_text_get(tb));
+   efl_text_container_text_set(tb, utf8);
+   ck_assert_str_eq(utf8, efl_text_container_text_get(tb));
    utf8 = "a\u2029b";
-   efl_text_set(tb, utf8);
-   ck_assert_str_eq(utf8, efl_text_get(tb));
+   efl_text_container_text_set(tb, utf8);
+   ck_assert_str_eq(utf8, efl_text_container_text_get(tb));
    utf8 = "a\u2029bc\ndef\n\u2029";
-   efl_text_set(tb, utf8);
-   ck_assert_str_eq(utf8, efl_text_get(tb));
+   efl_text_container_text_set(tb, utf8);
+   ck_assert_str_eq(utf8, efl_text_container_text_get(tb));
    utf8 = "\u2029\n\n\n\n\u2029\n\u2029\n\n\n";
-   efl_text_set(tb, utf8);
-   ck_assert_str_eq(utf8, efl_text_get(tb));
+   efl_text_container_text_set(tb, utf8);
+   ck_assert_str_eq(utf8, efl_text_container_text_get(tb));
 
    END_TB_TEST();
 }
@@ -4261,7 +4261,7 @@ EFL_START_TEST(evas_textblock_annotation)
       " for it."
       ;
 
-   efl_text_set(tb, buf);
+   efl_text_container_text_set(tb, buf);
 
    /* Check some trivial cases */
    evas_textblock_cursor_pos_set(start, 0);
@@ -4298,7 +4298,7 @@ EFL_START_TEST(evas_textblock_annotation)
    _test_check_annotation(tb, 60, 61, _COMP_PARAMS());
 
    /* See that annotation's positions are updated as text is inserted */
-   efl_text_set(tb, "hello");
+   efl_text_container_text_set(tb, "hello");
    evas_textblock_cursor_pos_set(start, 0);
    evas_textblock_cursor_pos_set(end, 2);
    an = efl_text_annotation_insert(tb, start, end, "color=#fff");
@@ -4313,7 +4313,7 @@ EFL_START_TEST(evas_textblock_annotation)
    _test_check_annotation(tb, 2, 3, _COMP_PARAMS("font_size=14"));
    _test_check_annotation(tb, 3, 4, _COMP_PARAMS());
 
-   efl_text_set(tb, "hello world");
+   efl_text_container_text_set(tb, "hello world");
    evas_textblock_cursor_pos_set(start, 0);
    evas_textblock_cursor_pos_set(end, 2);
    an = efl_text_annotation_insert(tb, start, end, "color=#fff");
@@ -4330,7 +4330,7 @@ EFL_START_TEST(evas_textblock_annotation)
    _test_check_annotation(tb, 0, 3, _COMP_PARAMS("font_size=10", "color=#000"));
 
    /* Delete annotations directly */
-   efl_text_set(tb, "hello world");
+   efl_text_container_text_set(tb, "hello world");
    evas_textblock_cursor_pos_set(start, 0);
    evas_textblock_cursor_pos_set(end, 2);
    an = efl_text_annotation_insert(tb, start, end, "color=#fff");
@@ -4350,7 +4350,7 @@ EFL_START_TEST(evas_textblock_annotation)
    _test_check_annotation(tb, 0, 0, _COMP_PARAMS());
 
    /* Check blocking of "item formats" */
-   efl_text_set(tb, "hello world");
+   efl_text_container_text_set(tb, "hello world");
    evas_textblock_cursor_pos_set(start, 0);
    evas_textblock_cursor_pos_set(end, 1);
    efl_text_annotation_insert(tb, start, end, "ps");
@@ -4368,7 +4368,7 @@ EFL_START_TEST(evas_textblock_annotation)
    _test_check_annotation(tb, 0, 8, _COMP_PARAMS("color=#fff"));
 
    /* Check "item" annotations */
-   efl_text_set(tb, "abcd");
+   efl_text_container_text_set(tb, "abcd");
    evas_textblock_cursor_pos_set(cur, 4);
    an = efl_text_cursor_item_insert(tb, cur, "", "size=16x16");
    _test_check_annotation(tb, 4, 4, _COMP_PARAMS("size=16x16 href="));
@@ -4391,7 +4391,7 @@ EFL_START_TEST(evas_textblock_annotation)
      }
 
    /* Using annotations with new text API */
-   efl_text_set(tb, "hello");
+   efl_text_container_text_set(tb, "hello");
    evas_textblock_cursor_pos_set(start, 0);
    evas_textblock_cursor_pos_set(end, 5);
    efl_text_annotation_insert(tb, start, end, "color=#fff");
@@ -4403,7 +4403,7 @@ EFL_START_TEST(evas_textblock_annotation)
    _test_check_annotation(tb, 5, 5, _COMP_PARAMS());
 
    /* Specific case with PS */
-   efl_text_set(tb, "hello\nworld");
+   efl_text_container_text_set(tb, "hello\nworld");
    evas_textblock_cursor_pos_set(start, 0);
    evas_textblock_cursor_pos_set(end, 5);
    efl_text_annotation_insert(tb, start, end, "color=#fff");
@@ -4441,7 +4441,7 @@ EFL_START_TEST(efl_canvas_text_cursor)
    /* Split cursor in LTR paragraph.
     * Russian 't' in the beginnning to create additional item.*/
                    /*01234    5 6789012345678  19  01234 */
-   efl_text_set(tb, "тest \u202bנסיוןabcנסיון\u202c bang");
+   efl_text_container_text_set(tb, "тest \u202bנסיוןabcנסיון\u202c bang");
    efl_canvas_text_size_native_get(tb, &nw, &nh);
    efl_gfx_object_size_set(tb, EINA_SIZE2D(nw,  nh));
 

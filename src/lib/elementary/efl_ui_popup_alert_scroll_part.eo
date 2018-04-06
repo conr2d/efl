@@ -5,6 +5,6 @@ class Efl.Ui.Popup_Alert_Scroll.Part (Efl.Ui.Layout.Part_Content, Efl.Ui.Layout.
    implements {
       Efl.Content.content { get; set; }
       Efl.Content.content_unset;
-      Efl.Text.text { set; get; }
+      Efl.Text.Container.text { set; get; }
    }
 }

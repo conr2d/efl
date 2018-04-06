@@ -21,13 +21,13 @@ _win_new(Evas_Object *stack_top, const char *title)
      win = efl_add(EFL_UI_WIN_CLASS, efl_main_loop_get(),
                    efl_ui_win_name_set(efl_added, "window-stack"),
                    efl_ui_win_type_set(efl_added, ELM_WIN_NAVIFRAME_BASIC),
-                   efl_text_set(efl_added, title),
+                   efl_text_container_text_set(efl_added, title),
                    efl_ui_win_autodel_set(efl_added, EINA_TRUE));
    else
      win = efl_add(EFL_UI_WIN_CLASS, efl_main_loop_get(),
                    efl_ui_win_name_set(efl_added, "window-stack"),
                    efl_ui_win_type_set(efl_added, ELM_WIN_DIALOG_BASIC),
-                   efl_text_set(efl_added, title),
+                   efl_text_container_text_set(efl_added, title),
                    efl_ui_win_autodel_set(efl_added, EINA_TRUE));
 
    if (level == 3) popto_win = win;

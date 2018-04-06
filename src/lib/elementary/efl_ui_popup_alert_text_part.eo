@@ -5,6 +5,6 @@ class Efl.Ui.Popup_Alert_Text.Part (Efl.Ui.Layout.Part_Content, Efl.Ui.Layout.Pa
    implements {
       Efl.Content.content { get; set; }
       Efl.Content.content_unset;
-      Efl.Text.text { get; set; }
+      Efl.Text.Container.text { get; set; }
    }
 }

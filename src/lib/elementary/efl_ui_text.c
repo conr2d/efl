@@ -372,13 +372,13 @@ _load_do(Evas_Object *obj)
 
    if (text)
      {
-        efl_text_set(obj, text);
+        efl_text_container_text_set(obj, text);
         free(text);
         return EINA_TRUE;
      }
    else
      {
-        efl_text_set(obj, "");
+        efl_text_container_text_set(obj, "");
         return EINA_FALSE;
      }
 }
@@ -417,7 +417,7 @@ _save_do(Evas_Object *obj)
      {
       /* Only supported format */
       case ELM_TEXT_FORMAT_PLAIN_UTF8:
-        _text_save(sd->file, efl_text_get(obj));
+        _text_save(sd->file, efl_text_container_text_get(obj));
         break;
 
       case ELM_TEXT_FORMAT_MARKUP_UTF8:
@@ -2087,7 +2087,7 @@ _entry_changed_handle(void *data,
                                        _delay_write, data);
 
    _return_key_enabled_check(data);
-   text = efl_text_get(data);
+   text = efl_text_container_text_get(data);
    if (text)
      {
         if (text[0])
@@ -3160,7 +3160,7 @@ _efl_ui_text_efl_object_constructor(Eo *obj, Efl_Ui_Text_Data *sd)
      (sd->entry_edje, "entry,redo,request", "elm.text",
      _entry_redo_request_signal_cb, obj);
 
-   efl_text_set(sd->text_obj, "");
+   efl_text_container_text_set(sd->text_obj, "");
 
    elm_object_sub_cursor_set
      (wd->resize_obj, obj, ELM_CURSOR_XTERM);
@@ -3941,7 +3941,7 @@ _efl_ui_text_efl_access_text_character_get(Eo *obj, Efl_Ui_Text_Data *_pd EINA_U
 
    if (_pd->password) return ENTRY_PASSWORD_MASK_CHARACTER;
 
-   txt = efl_text_get(obj);
+   txt = efl_text_container_text_get(obj);
    if (!txt) return ret;
 
    ret = eina_unicode_utf8_next_get(txt, &idx);
@@ -3955,7 +3955,7 @@ _efl_ui_text_efl_access_text_character_count_get(Eo *obj, Efl_Ui_Text_Data *_pd 
 {
    const char *txt;
 
-   txt = efl_text_get(obj);
+   txt = efl_text_container_text_get(obj);
    if (!txt) return -1;
    return eina_unicode_utf8_get_len(txt);
 }
@@ -4387,7 +4387,7 @@ _efl_ui_text_efl_access_text_default_attributes_get(Eo *obj, Efl_Ui_Text_Data *_
 EOLIAN static Eina_Bool
 _efl_ui_text_efl_access_editable_text_text_content_set(Eo *obj, Efl_Ui_Text_Data *pd EINA_UNUSED, const char *content)
 {
-   efl_text_set(obj, content);
+   efl_text_container_text_set(obj, content);
    return EINA_TRUE;
 }
 

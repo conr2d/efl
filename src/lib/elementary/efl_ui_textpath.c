@@ -531,13 +531,13 @@ _efl_ui_textpath_text_get(Eo *obj EINA_UNUSED, Efl_Ui_Textpath_Data *pd, const c
 }
 
 EOLIAN static void
-_efl_ui_textpath_efl_text_text_set(Eo *obj, Efl_Ui_Textpath_Data *pd, const char *text)
+_efl_ui_textpath_efl_text_container_text_set(Eo *obj, Efl_Ui_Textpath_Data *pd, const char *text)
 {
    _textpath_text_set_internal(obj, pd, "elm.text", text);
 }
 
 EOLIAN static const char *
-_efl_ui_textpath_efl_text_text_get(Eo *obj EINA_UNUSED, Efl_Ui_Textpath_Data *pd)
+_efl_ui_textpath_efl_text_container_text_get(Eo *obj EINA_UNUSED, Efl_Ui_Textpath_Data *pd)
 {
    return edje_object_part_text_get(pd->text_obj, "elm.text");
 }

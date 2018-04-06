@@ -17,7 +17,7 @@
 #include "interfaces/efl_part.eo.c"
 #include "interfaces/efl_playable.eo.c"
 #include "interfaces/efl_player.eo.c"
-#include "interfaces/efl_text.eo.c"
+#include "interfaces/efl_text_container.eo.c"
 #include "interfaces/efl_text_font.eo.c"
 #include "interfaces/efl_text_style.eo.c"
 #include "interfaces/efl_text_format.eo.c"

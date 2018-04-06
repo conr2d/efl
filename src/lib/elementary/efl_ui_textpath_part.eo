@@ -3,6 +3,6 @@ class Efl.Ui.Textpath.Part (Efl.Ui.Layout.Part_Text)
    [[Efl UI Textpath internal part class]]
    data: null;
    implements {
-      Efl.Text.text { set; get; }
+      Efl.Text.Container.text { set; get; }
    }
 }

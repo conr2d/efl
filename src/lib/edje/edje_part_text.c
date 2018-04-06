@@ -7,19 +7,19 @@ PROXY_IMPLEMENTATION(text, MY_CLASS, EINA_FALSE)
 #undef PROXY_IMPLEMENTATION
 
 EOLIAN static void
-_efl_canvas_layout_part_text_efl_text_text_set(Eo *obj,
+_efl_canvas_layout_part_text_efl_text_container_text_set(Eo *obj,
       void *_pd EINA_UNUSED, const char *text)
 {
    PROXY_DATA_GET(obj, pd);
-   _edje_efl_text_set(obj, pd->ed, pd->part, text, EINA_FALSE, EINA_FALSE);
+   _edje_efl_text_container_text_set(obj, pd->ed, pd->part, text, EINA_FALSE, EINA_FALSE);
 }
 
 EOLIAN static const char *
-_efl_canvas_layout_part_text_efl_text_text_get(Eo *obj,
+_efl_canvas_layout_part_text_efl_text_container_text_get(Eo *obj,
       void *_pd EINA_UNUSED)
 {
    PROXY_DATA_GET(obj, pd);
-   return _edje_efl_text_get(obj, pd->ed, pd->part, EINA_FALSE, EINA_FALSE);
+   return _edje_efl_text_container_text_get(obj, pd->ed, pd->part, EINA_FALSE, EINA_FALSE);
 }
 
 EOLIAN static const char *
@@ -27,7 +27,7 @@ _efl_canvas_layout_part_text_efl_text_markup_markup_get(Eo *obj,
       void *_pd EINA_UNUSED)
 {
    PROXY_DATA_GET(obj, pd);
-   return _edje_efl_text_get(obj, pd->ed, pd->part, EINA_FALSE, EINA_TRUE);
+   return _edje_efl_text_container_text_get(obj, pd->ed, pd->part, EINA_FALSE, EINA_TRUE);
 }
 
 EOLIAN static void
@@ -35,7 +35,7 @@ _efl_canvas_layout_part_text_efl_text_markup_markup_set(Eo *obj,
       void *_pd EINA_UNUSED, const char *text)
 {
    PROXY_DATA_GET(obj, pd);
-   _edje_efl_text_set(obj, pd->ed, pd->part, text, EINA_FALSE, EINA_TRUE);
+   _edje_efl_text_container_text_set(obj, pd->ed, pd->part, text, EINA_FALSE, EINA_TRUE);
 }
 
 

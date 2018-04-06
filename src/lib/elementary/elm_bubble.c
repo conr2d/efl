@@ -85,7 +85,7 @@ _elm_bubble_text_set(Eo *obj, Elm_Bubble_Data *_pd EINA_UNUSED, const char *part
    if (!_elm_layout_part_aliasing_eval(obj, &part, EINA_TRUE))
      return EINA_FALSE;
 
-   efl_text_set(efl_part(efl_super(obj, MY_CLASS), part), label);
+   efl_text_container_text_set(efl_part(efl_super(obj, MY_CLASS), part), label);
 
    if (!strcmp(part, "elm.info"))
      {

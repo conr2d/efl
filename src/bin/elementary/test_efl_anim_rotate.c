@@ -43,13 +43,13 @@ _btn_clicked_cb(void *data, Evas_Object *obj, void *event_info EINA_UNUSED)
      {
         //Create Animation Object from Animation
         efl_animation_player_animation_set(ad->anim_obj, ad->cw_45_degrees_anim);
-        efl_text_set(obj, "Start Rotate Animation from 45 to 0 degrees");
+        efl_text_container_text_set(obj, "Start Rotate Animation from 45 to 0 degrees");
      }
    else
      {
         //Create Animation Object from Animation
         efl_animation_player_animation_set(ad->anim_obj, ad->ccw_45_degrees_anim);
-        efl_text_set(obj, "Start Rotate Animation from 0 to 45 degrees");
+        efl_text_container_text_set(obj, "Start Rotate Animation from 0 to 45 degrees");
      }
 
    //Let Animation Object start animation

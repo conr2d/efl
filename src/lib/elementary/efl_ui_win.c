@@ -5537,7 +5537,7 @@ _efl_ui_win_efl_object_constructor(Eo *obj, Efl_Ui_Win_Data *pd)
 }
 
 EOLIAN static void
-_efl_ui_win_efl_text_text_set(Eo *obj EINA_UNUSED, Efl_Ui_Win_Data *sd, const char *title)
+_efl_ui_win_efl_text_container_text_set(Eo *obj EINA_UNUSED, Efl_Ui_Win_Data *sd, const char *title)
 {
    if (!title) return;
    eina_stringshare_replace(&(sd->title), title);
@@ -5549,7 +5549,7 @@ _efl_ui_win_efl_text_text_set(Eo *obj EINA_UNUSED, Efl_Ui_Win_Data *sd, const ch
 }
 
 EOLIAN static const char*
-_efl_ui_win_efl_text_text_get(Eo *obj EINA_UNUSED, Efl_Ui_Win_Data *sd)
+_efl_ui_win_efl_text_container_text_get(Eo *obj EINA_UNUSED, Efl_Ui_Win_Data *sd)
 {
    return sd->title;
 }
@@ -8066,13 +8066,13 @@ elm_win_shaped_get(const Evas_Object *obj)
 EAPI void
 elm_win_title_set(Evas_Object *obj, const char *title)
 {
-   efl_text_set(obj, title);
+   efl_text_container_text_set(obj, title);
 }
 
 EAPI const char*
 elm_win_title_get(const Evas_Object *obj)
 {
-   return efl_text_get(obj);
+   return efl_text_container_text_get(obj);
 }
 
 EAPI void
@@ -8677,7 +8677,7 @@ elm_win_util_standard_add(const char *name, const char *title)
    Evas_Object *win;
 
    win = elm_legacy_add(EFL_UI_WIN_LEGACY_CLASS, NULL,
-                        efl_text_set(efl_added, title),
+                        efl_text_container_text_set(efl_added, title),
                         efl_ui_win_name_set(efl_added, name),
                         efl_ui_win_type_set(efl_added, EFL_UI_WIN_BASIC));
    if (!win) return NULL;
@@ -8692,7 +8692,7 @@ elm_win_util_dialog_add(Evas_Object *parent, const char *name, const char *title
    Evas_Object *win;
 
    win = elm_legacy_add(EFL_UI_WIN_LEGACY_CLASS, parent,
-                        efl_text_set(efl_added, title),
+                        efl_text_container_text_set(efl_added, title),
                         efl_ui_win_name_set(efl_added, name),
                         efl_ui_win_type_set(efl_added, EFL_UI_WIN_DIALOG_BASIC));
    if (!win) return NULL;

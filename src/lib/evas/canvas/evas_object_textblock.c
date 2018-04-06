@@ -14776,7 +14776,7 @@ _efl_canvas_text_cursor_text_append(Efl_Text_Cursor_Cursor *cur,
 }
 
 EOLIAN static void
-_efl_canvas_text_efl_text_text_set(Eo *eo_obj, Efl_Canvas_Text_Data *o,
+_efl_canvas_text_efl_text_container_text_set(Eo *eo_obj, Efl_Canvas_Text_Data *o,
       const char *text)
 {
    ASYNC_BLOCK;
@@ -14800,7 +14800,7 @@ _canvas_text_get_all(Eo *eo_obj, Efl_Canvas_Text_Data *o EINA_UNUSED)
 }
 
 EOLIAN static const char *
-_efl_canvas_text_efl_text_text_get(Eo *eo_obj, Efl_Canvas_Text_Data *o)
+_efl_canvas_text_efl_text_container_text_get(Eo *eo_obj, Efl_Canvas_Text_Data *o)
 {
    Evas_Object_Protected_Data *obj = efl_data_scope_get(eo_obj, EFL_CANVAS_OBJECT_CLASS);
    evas_object_async_block(obj);

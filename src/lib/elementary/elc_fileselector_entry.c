@@ -207,7 +207,7 @@ _elm_fileselector_entry_text_set(Eo *obj, Elm_Fileselector_Entry_Data *sd, const
 {
    if (part && strcmp(part, "default"))
      {
-        efl_text_set(efl_part(efl_super(obj, MY_CLASS), part), label);
+        efl_text_container_text_set(efl_part(efl_super(obj, MY_CLASS), part), label);
      }
 
    elm_object_text_set(sd->button, label);
@@ -220,7 +220,7 @@ _elm_fileselector_entry_text_get(Eo *obj, Elm_Fileselector_Entry_Data *sd, const
    if (part && strcmp(part, "default"))
      {
         const char *text = NULL;
-        text = efl_text_get(efl_part(efl_super(obj, MY_CLASS), part));
+        text = efl_text_container_text_get(efl_part(efl_super(obj, MY_CLASS), part));
         return text;
      }
 

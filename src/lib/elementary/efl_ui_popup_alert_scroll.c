@@ -202,7 +202,7 @@ _efl_ui_popup_alert_scroll_content_unset(Eo *obj, Efl_Ui_Popup_Alert_Scroll_Data
 static Eina_Bool
 _efl_ui_popup_alert_scroll_text_set(Eo *obj, Efl_Ui_Popup_Alert_Scroll_Data *pd EINA_UNUSED, const char *part, const char *label)
 {
-   efl_text_set(efl_part(efl_super(obj, MY_CLASS), part), label);
+   efl_text_container_text_set(efl_part(efl_super(obj, MY_CLASS), part), label);
 
    return EINA_TRUE;
 }
@@ -210,7 +210,7 @@ _efl_ui_popup_alert_scroll_text_set(Eo *obj, Efl_Ui_Popup_Alert_Scroll_Data *pd 
 const char *
 _efl_ui_popup_alert_scroll_text_get(Eo *obj EINA_UNUSED, Efl_Ui_Popup_Alert_Scroll_Data *pd EINA_UNUSED, const char *part)
 {
-   return efl_text_get(efl_part(efl_super(obj, MY_CLASS), part));
+   return efl_text_container_text_get(efl_part(efl_super(obj, MY_CLASS), part));
 }
 
 static void

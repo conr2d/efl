@@ -5,6 +5,6 @@ class Elm.Naviframe.Part (Efl.Ui.Layout.Part_Legacy)
    implements {
       Efl.Content.content { get; set; }
       Efl.Content.content_unset;
-      Efl.Text.text { set; get; }
+      Efl.Text.Container.text { set; get; }
    }
 }

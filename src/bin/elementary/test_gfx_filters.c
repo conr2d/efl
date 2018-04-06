@@ -184,7 +184,7 @@ _spinner_cb(void *data, Evas_Object *obj EINA_UNUSED, void *event_info EINA_UNUS
         const Filter *f = &templates[k];
 
         _filter_apply(win, f->code, f->name);
-        efl_text_set(code, f->code);
+        efl_text_container_text_set(code, f->code);
 
         if (f->images)
           {
@@ -211,7 +211,7 @@ _code_changed(void *data, const Eina_Value v,
    code = efl_key_wref_get(win, "code");
    spinner = efl_key_wref_get(win, "spinner");
 
-   source = efl_text_get(code);
+   source = efl_text_container_text_get(code);
    {
       // Fix up paragrah separators from the UTF-8 input. :(
       const char *paragraph = "\u2029";
@@ -280,8 +280,8 @@ _img_click(void *data, const Efl_Event *ev)
    buf = eina_strbuf_new();
    eina_strbuf_append_printf(buf, "%s = buffer { src = '%s' }\n", name, name);
 
-   eina_strbuf_append(buf, efl_text_get(code));
-   efl_text_set(code, eina_strbuf_string_get(buf));
+   eina_strbuf_append(buf, efl_text_container_text_get(code));
+   efl_text_container_text_set(code, eina_strbuf_string_get(buf));
    eina_strbuf_free(buf);
 
    efl_gfx_filter_source_set(text, name, ev->object);
@@ -334,7 +334,7 @@ test_gfx_filters(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, void *eve
    Eo *win, *box, *box2, *o, *text = NULL, *spinner, *code, *split, *flip, *tb;
 
    win = efl_add(EFL_UI_WIN_CLASS, efl_main_loop_get(),
-                 efl_text_set(efl_added, "Gfx Filter Editor"),
+                 efl_text_container_text_set(efl_added, "Gfx Filter Editor"),
                  efl_ui_win_autodel_set(efl_added, 1));
 
    box = efl_add(EFL_UI_BOX_CLASS, win,
@@ -353,7 +353,7 @@ test_gfx_filters(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, void *eve
       o = efl_add(EFL_UI_TEXT_CLASS, win,
                   efl_gfx_size_hint_weight_set(efl_added, 0.0, 1.0),
                   efl_gfx_size_hint_align_set(efl_added, 1.0, 0.5));
-      efl_text_set(o, "Filter:");
+      efl_text_container_text_set(o, "Filter:");
       efl_pack(box2, o);
 
       o = spinner = elm_spinner_add(win);
@@ -373,7 +373,7 @@ test_gfx_filters(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, void *eve
       evas_object_show(o);
 
       o = efl_add(EFL_UI_BUTTON_CLASS, win,
-                  efl_text_set(efl_added, "Flip"),
+                  efl_text_container_text_set(efl_added, "Flip"),
                   efl_gfx_size_hint_weight_set(efl_added, 0.0, 1.0),
                   efl_gfx_size_hint_align_set(efl_added, -1.0, 0.5),
                   efl_event_callback_add(efl_added, EFL_UI_EVENT_CLICKED, _flip_click, win));
@@ -462,7 +462,7 @@ test_gfx_filters(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, void *eve
       efl_event_callback_add(o, EFL_GFX_OBJECT_EVENT_RESIZE, _text_resize, NULL);
       efl_text_font_set(o, "Sans:style=Bold", default_font_size);
       efl_gfx_object_scale_set(text, elm_config_scale_get());
-      efl_text_set(o, "EFL");
+      efl_text_container_text_set(o, "EFL");
       efl_gfx_object_visible_set(o, 1);
       efl_pack(box2, o);
 

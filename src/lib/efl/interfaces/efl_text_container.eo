@@ -1,4 +1,4 @@
-interface Efl.Text
+interface Efl.Text.Container
 {
    [[Efl text interface]]
    methods {

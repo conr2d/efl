@@ -29,7 +29,7 @@ test_ui_button(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, void *event
 
    win = efl_add(EFL_UI_WIN_CLASS, efl_main_loop_get(),
                  efl_ui_win_type_set(efl_added, EFL_UI_WIN_BASIC),
-                 efl_text_set(efl_added, "Efl.Ui.Button"),
+                 efl_text_container_text_set(efl_added, "Efl.Ui.Button"),
                  efl_ui_win_autodel_set(efl_added, EINA_TRUE)
                 );
 
@@ -39,7 +39,7 @@ test_ui_button(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, void *event
 
    // Text Only Button
    efl_add(EFL_UI_BUTTON_CLASS, bx,
-           efl_text_set(efl_added, "Text"),
+           efl_text_container_text_set(efl_added, "Text"),
            efl_pack(bx, efl_added),
            efl_event_callback_add(efl_added, EFL_UI_EVENT_CLICKED, _clicked, NULL),
            efl_event_callback_add(efl_added, EFL_UI_EVENT_PRESSED, _pressed, NULL),
@@ -62,7 +62,7 @@ test_ui_button(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, void *event
    // Text + Icon Button
    snprintf(buf, sizeof(buf), "%s/images/logo_small.png", elm_app_data_dir_get());
    btn = efl_add(EFL_UI_BUTTON_CLASS, bx,
-                 efl_text_set(efl_added, "Text + Icon"),
+                 efl_text_container_text_set(efl_added, "Text + Icon"),
                  efl_pack(bx, efl_added),
                  efl_event_callback_add(efl_added, EFL_UI_EVENT_CLICKED, _clicked, NULL),
                  efl_event_callback_add(efl_added, EFL_UI_EVENT_PRESSED, _pressed, NULL),

@@ -3,6 +3,6 @@ class Efl.Ui.Popup_Alert.Part (Efl.Ui.Layout.Part_Text)
    [[Efl UI Popup Alert internal part class]]
    data: null;
    implements {
-      Efl.Text.text { get; set; }
+      Efl.Text.Container.text { get; set; }
    }
 }

@@ -106,14 +106,14 @@ _label_write(Evas_Object *obj)
 
    if (pd->templates)
      {
-        efl_text_set(sd->text_button, pd->templates);
+        efl_text_container_text_set(sd->text_button, pd->templates);
      }
    else
      {
         char buf[1024];
 
         snprintf(buf, sizeof(buf), "%.0f", pd->val);
-        efl_text_set(sd->text_button, buf);
+        efl_text_container_text_set(sd->text_button, buf);
      }
 }
 
@@ -617,7 +617,7 @@ _access_info_cb(void *data, Evas_Object *obj EINA_UNUSED)
    if (sd->entry_visible)
      txt = elm_object_text_get(sd->ent);
    else
-	 txt = efl_text_get(sd->text_button);
+	 txt = efl_text_container_text_get(sd->text_button);
 
    if (txt) return strdup(txt);
 

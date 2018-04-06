@@ -4242,7 +4242,7 @@ elm_entry_entry_set(Evas_Object *obj,
                     const char *entry)
 {
    ELM_ENTRY_CHECK(obj);
-   efl_text_set(efl_part(obj, "elm.text"), entry);
+   efl_text_container_text_set(efl_part(obj, "elm.text"), entry);
 }
 
 EAPI const char *
@@ -4250,7 +4250,7 @@ elm_entry_entry_get(const Evas_Object *obj)
 {
    ELM_ENTRY_CHECK(obj) NULL;
    const char *text = NULL;
-   text = efl_text_get(efl_part(obj, "elm.text"));
+   text = efl_text_container_text_get(efl_part(obj, "elm.text"));
    return text;
 }
 

@@ -2,7 +2,7 @@ import edje_types;
 
 class Efl.Canvas.Layout_Part_Invalid (Efl.Canvas.Layout_Part, Efl.Content,
                                       Efl.Pack_Linear, Efl.Ui.Direction,
-                                      Efl.Pack_Table, Efl.Text,
+                                      Efl.Pack_Table, Efl.Text.Container,
                                       Efl.Text.Markup, Efl.Text.Cursor)
 {
    [[Common class for part proxy objects for @Efl.Canvas.Layout.
@@ -31,7 +31,7 @@ class Efl.Canvas.Layout_Part_Invalid (Efl.Canvas.Layout_Part, Efl.Content,
       Efl.Content.content { get; set; }
       Efl.Content.content_unset;
       // Efl.Canvas.Layout_Part_Text
-      Efl.Text.text { set; get; }
+      Efl.Text.Container.text { set; get; }
       Efl.Text.Markup.markup { get; set; }
       Efl.Text.Cursor.text_cursor { get; }
       Efl.Text.Cursor.cursor_paragraph_first;

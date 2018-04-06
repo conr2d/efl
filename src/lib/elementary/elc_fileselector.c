@@ -3094,7 +3094,7 @@ _elm_fileselector_text_set(Eo *obj EINA_UNUSED, Elm_Fileselector_Data *sd, const
    else
      {
         Eina_Bool int_ret = EINA_TRUE;
-        efl_text_set(efl_part(efl_super(obj, MY_CLASS), part), label);
+        efl_text_container_text_set(efl_part(efl_super(obj, MY_CLASS), part), label);
         return int_ret;
      }
 

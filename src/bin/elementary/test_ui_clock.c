@@ -49,7 +49,7 @@ test_ui_clock(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, void *event_
 
    win = efl_add(EFL_UI_WIN_CLASS, efl_main_loop_get(),
                  efl_ui_win_type_set(efl_added, EFL_UI_WIN_BASIC),
-                 efl_text_set(efl_added, "Efl.Ui.Clock"),
+                 efl_text_container_text_set(efl_added, "Efl.Ui.Clock"),
                  efl_ui_win_autodel_set(efl_added, EINA_TRUE));
 
    bx = efl_add(EFL_UI_BOX_CLASS, win,
@@ -85,7 +85,7 @@ test_ui_clock(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, void *event_
                  efl_pack(bx, efl_added));
 
    efl_add(EFL_UI_TEXT_CLASS, bx,
-           efl_text_set(efl_added, "Editable Clock:"),
+           efl_text_container_text_set(efl_added, "Editable Clock:"),
            efl_gfx_size_hint_weight_set(efl_added, 0.0, 0.0),
            efl_gfx_size_hint_align_set(efl_added, 0, EVAS_HINT_FILL),
            efl_gfx_size_hint_min_set(efl_added, EINA_SIZE2D(100, 25)),
@@ -99,7 +99,7 @@ test_ui_clock(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, void *event_
                  efl_pack(bx, efl_added));
 
    efl_add(EFL_UI_BUTTON_CLASS, win,
-           efl_text_set(efl_added, "Back to the future..."),
+           efl_text_container_text_set(efl_added, "Back to the future..."),
            efl_event_callback_add(efl_added, EFL_UI_EVENT_CLICKED, _bt_clicked, NULL),
            efl_pack(bx, efl_added));
 }

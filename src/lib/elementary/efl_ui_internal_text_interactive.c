@@ -80,7 +80,7 @@ _entry_imf_retrieve_surrounding_cb(void *data, Ecore_IMF_Context *ctx EINA_UNUSE
 
    if (text)
      {
-        str = efl_text_get(obj);
+        str = efl_text_container_text_get(obj);
         if (str)
           {
              *text = strdup(str);

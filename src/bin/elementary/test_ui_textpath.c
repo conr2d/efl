@@ -59,9 +59,9 @@ _short_text_changed_cb(void *data, const Efl_Event *event)
    Eina_Bool val = elm_check_selected_get(event->object);
 
    if (val)
-     efl_text_set(txtpath, TEST_UI_TEXTPATH_SHORT_TEXT);
+     efl_text_container_text_set(txtpath, TEST_UI_TEXTPATH_SHORT_TEXT);
    else
-     efl_text_set(txtpath, TEST_UI_TEXTPATH_LONG_TEXT);
+     efl_text_container_text_set(txtpath, TEST_UI_TEXTPATH_LONG_TEXT);
 }
 
 static void
@@ -114,7 +114,7 @@ test_ui_textpath(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, void *eve
    elm_box_pack_end(box, txtpath);
    efl_ui_textpath_autofit_set(txtpath, EINA_TRUE);
 
-   efl_text_set(txtpath, TEST_UI_TEXTPATH_LONG_TEXT);
+   efl_text_container_text_set(txtpath, TEST_UI_TEXTPATH_LONG_TEXT);
 
    efl_ui_textpath_circle_set(txtpath, CX, CY, CR, 0, EFL_UI_TEXTPATH_DIRECTION_CCW);
    efl_gfx_object_visible_set(txtpath, EINA_TRUE);

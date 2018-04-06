@@ -3,7 +3,7 @@ class Elm.Fileselector.Part (Efl.Ui.Layout.Part_Legacy)
    [[Elementary fileselector entry internal part class]]
    data: null;
    implements {
-      Efl.Text.text { set; }
+      Efl.Text.Container.text { set; }
    }
 }
 

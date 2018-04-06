@@ -119,7 +119,7 @@ test_ui_progressbar(void *data EINA_UNUSED, Eo *obj EINA_UNUSED, void *event_inf
 
    pd->win = win = efl_add(EFL_UI_WIN_CLASS, efl_main_loop_get(),
                            efl_ui_win_type_set(efl_added, EFL_UI_WIN_BASIC),
-                           efl_text_set(efl_added, "Efl.Ui.Progressbar"),
+                           efl_text_container_text_set(efl_added, "Efl.Ui.Progressbar"),
                            efl_ui_win_autodel_set(efl_added, EINA_TRUE),
                            efl_event_callback_add(efl_added, EFL_UI_WIN_EVENT_DELETE_REQUEST,
                                                   _win_delete_req_cb, pd)
@@ -131,7 +131,7 @@ test_ui_progressbar(void *data EINA_UNUSED, Eo *obj EINA_UNUSED, void *event_inf
 
    pd->pb1 = efl_add(EFL_UI_PROGRESSBAR_CLASS, bx,
                      efl_pack(bx, efl_added),
-                     efl_text_set(efl_added, "percent"),
+                     efl_text_container_text_set(efl_added, "percent"),
                      efl_ui_range_min_max_set(efl_added, 0, 100),
                      efl_gfx_size_hint_min_set(efl_added, EINA_SIZE2D(250, 20))
                     );
@@ -144,7 +144,7 @@ test_ui_progressbar(void *data EINA_UNUSED, Eo *obj EINA_UNUSED, void *event_inf
 
    pd->pb2 = efl_add(EFL_UI_PROGRESSBAR_CLASS, bx,
                      efl_pack(bx, efl_added),
-                     efl_text_set(efl_added, "10-100"),
+                     efl_text_container_text_set(efl_added, "10-100"),
                      efl_ui_progressbar_pulse_set(efl_added, EINA_TRUE),
                      efl_gfx_size_hint_min_set(efl_added, EINA_SIZE2D(250, 20)),
                      efl_ui_range_min_max_set(efl_added, 10, 100),
@@ -157,20 +157,20 @@ test_ui_progressbar(void *data EINA_UNUSED, Eo *obj EINA_UNUSED, void *event_inf
                  );
 
    pd->btn_start = efl_add(EFL_UI_BUTTON_CLASS, btbx,
-                           efl_text_set(efl_added, "start"),
+                           efl_text_container_text_set(efl_added, "start"),
                            efl_event_callback_add(efl_added, EFL_UI_EVENT_CLICKED,
                                                   _start_btn_clicked_cb, pd),
                            efl_pack(btbx, efl_added)
                           );
 
    pd->btn_stop = efl_add(EFL_UI_BUTTON_CLASS, btbx,
-                          efl_text_set(efl_added, "stop"),
+                          efl_text_container_text_set(efl_added, "stop"),
                           efl_event_callback_add(efl_added, EFL_UI_EVENT_CLICKED,
                                                  _stop_btn_clicked_cb, pd),
                           efl_pack(btbx, efl_added)
                          );
    pd->btn_reset = efl_add(EFL_UI_BUTTON_CLASS, btbx,
-                           efl_text_set(efl_added, "reset"),
+                           efl_text_container_text_set(efl_added, "reset"),
                            efl_event_callback_add(efl_added, EFL_UI_EVENT_CLICKED,
                                                   _reset_btn_clicked_cb, pd),
                            efl_pack(btbx, efl_added)

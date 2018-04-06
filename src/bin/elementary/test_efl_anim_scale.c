@@ -43,13 +43,13 @@ _btn_clicked_cb(void *data, Evas_Object *obj, void *event_info EINA_UNUSED)
      {
         //Create Animation Object from Animation
         efl_animation_player_animation_set(ad->anim_obj, ad->scale_double_anim);
-        efl_text_set(obj, "Start Scale Animation to zoom out");
+        efl_text_container_text_set(obj, "Start Scale Animation to zoom out");
      }
    else
      {
         //Create Animation Object from Animation
         efl_animation_player_animation_set(ad->anim_obj, ad->scale_half_anim);
-        efl_text_set(obj, "Start Scale Animation to zoom in");
+        efl_text_container_text_set(obj, "Start Scale Animation to zoom in");
      }
 
    //Let Animation Object start animation

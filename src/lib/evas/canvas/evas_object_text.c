@@ -1061,12 +1061,12 @@ _evas_text_efl_object_dbg_info_get(Eo *eo_obj, Evas_Text_Data *o EINA_UNUSED, Ef
    text = efl_text_font_source_get(eo_obj);
    EFL_DBG_INFO_APPEND(group, "Font source", EINA_VALUE_TYPE_STRING, text);
 
-   text = efl_text_get(eo_obj);
+   text = efl_text_container_text_get(eo_obj);
    EFL_DBG_INFO_APPEND(group, "Text", EINA_VALUE_TYPE_STRING, text);
 }
 
 EOLIAN static void
-_evas_text_efl_text_text_set(Eo *eo_obj, Evas_Text_Data *o, const char *_text)
+_evas_text_efl_text_container_text_set(Eo *eo_obj, Evas_Text_Data *o, const char *_text)
 {
    Evas_Object_Protected_Data *obj = efl_data_scope_get(eo_obj, EFL_CANVAS_OBJECT_CLASS);
    int len;
@@ -1118,7 +1118,7 @@ _evas_text_bidi_delimiters_get(Eo *eo_obj EINA_UNUSED, Evas_Text_Data *o)
 }
 
 EOLIAN static const char*
-_evas_text_efl_text_text_get(Eo *eo_obj EINA_UNUSED, Evas_Text_Data *o)
+_evas_text_efl_text_container_text_get(Eo *eo_obj EINA_UNUSED, Evas_Text_Data *o)
 {
    return o->cur.utf8_text;
 }
@@ -2374,13 +2374,13 @@ evas_object_text_font_get(const Eo *obj, const char **font, Evas_Font_Size *size
 EAPI void
 evas_object_text_text_set(Eo *obj, const char *text)
 {
-   efl_text_set((Eo *) obj, text);
+   efl_text_container_text_set((Eo *) obj, text);
 }
 
 EAPI const char *
 evas_object_text_text_get(const Eo *obj)
 {
-   return efl_text_get((Eo *) obj);
+   return efl_text_container_text_get((Eo *) obj);
 }
 
 EOLIAN static void

@@ -55,7 +55,7 @@ _start_btn_clicked_cb(void *data, Evas_Object *obj, void *event_info EINA_UNUSED
 
         //Create Animation Object from Animation
         efl_animation_player_animation_set(ad->anim_obj, ad->show_anim);
-        efl_text_set(obj, "Start Alpha Animation from 1.0 to 0.0");
+        efl_text_container_text_set(obj, "Start Alpha Animation from 1.0 to 0.0");
      }
    else
      {
@@ -64,7 +64,7 @@ _start_btn_clicked_cb(void *data, Evas_Object *obj, void *event_info EINA_UNUSED
 
         //Create Animation Object from Animation
         efl_animation_player_animation_set(ad->anim_obj, ad->hide_anim);
-        efl_text_set(obj, "Start Alpha Animation from 0.0 to 1.0");
+        efl_text_container_text_set(obj, "Start Alpha Animation from 0.0 to 1.0");
      }
 
    //Let Animation Object start animation

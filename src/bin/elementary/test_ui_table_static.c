@@ -106,7 +106,7 @@ test_ui_table_static(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, void 
 
    win = efl_add(EFL_UI_WIN_CLASS, efl_main_loop_get(),
                 efl_ui_win_name_set(efl_added, "table"),
-                efl_text_set(efl_added, "Table"),
+                efl_text_container_text_set(efl_added, "Table"),
                 efl_ui_win_autodel_set(efl_added, EINA_TRUE),
                 efl_event_callback_add(efl_added, EFL_EVENT_DEL, _win_del, api));
 

@@ -4,7 +4,7 @@ enum Efl.Ui.Textpath.Direction {
     ccw [[Counter-clockwise]]
 }
 
-class Efl.Ui.Textpath (Efl.Ui.Layout, Efl.Object, Efl.Text, Efl.Gfx.Path)
+class Efl.Ui.Textpath (Efl.Ui.Layout, Efl.Object, Efl.Text.Container, Efl.Gfx.Path)
 {
    [[Efl Ui Textpath class]]
    methods {
@@ -49,7 +49,7 @@ class Efl.Ui.Textpath (Efl.Ui.Layout, Efl.Object, Efl.Text, Efl.Gfx.Path)
       Efl.Object.constructor;
       Efl.Object.destructor;
       Efl.Canvas.Group.group_calculate;
-      Efl.Text.text {get; set;}
+      Efl.Text.Container.text {get; set;}
       Efl.Part.part;
       Efl.Ui.Widget.theme_apply;
       Efl.Gfx.Object.position { set; }

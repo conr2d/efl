@@ -50,7 +50,7 @@ test_efl_ui_text_label(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, voi
    evas_object_show(bx);
 
    en = _create_label(win, bx);
-   efl_text_set(en, "This is a\t small label");
+   efl_text_container_text_set(en, "This is a\t small label");
    //                012345678901234567890
    _apply_style(en, 0, 21, "font_size=12 font_weight=bold");
    efl_text_halign_set(en, 0.5);
@@ -58,7 +58,7 @@ test_efl_ui_text_label(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, voi
 
    en = _create_label(win, bx);
    efl_text_halign_set(en, 0.5);
-   efl_text_set(en, "This is a text. Is also has\n"
+   efl_text_container_text_set(en, "This is a text. Is also has\n"
          "newlines. There are several styles applied.");
    _apply_style(en, 40, 45, "font_weight=bold color=#ff0");
    _apply_style(en, 52, 58, "font_weight=italic color=#f00");
@@ -66,11 +66,11 @@ test_efl_ui_text_label(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, voi
 
    en = _create_label(win, bx);
    efl_text_halign_set(en, 0.5);
-   efl_text_set(en, "By default 'multiline' is disabled.\n"
+   efl_text_container_text_set(en, "By default 'multiline' is disabled.\n"
          "So, \\n would only work if you enable it.");
 
    en = _create_label(win, bx);
-   efl_text_set(en, "You can input text here.");
+   efl_text_container_text_set(en, "You can input text here.");
    efl_text_font_set(en, "Sans", 14);
    efl_ui_text_interactive_editable_set(en, EINA_TRUE);
    efl_text_wrap_set(en, EFL_TEXT_FORMAT_WRAP_WORD);
@@ -78,7 +78,7 @@ test_efl_ui_text_label(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, voi
    evas_object_size_hint_weight_set(en, EVAS_HINT_EXPAND, 0.5);
 
    en = _create_label(win, bx);
-   efl_text_set(en, "Input multiline here.");
+   efl_text_container_text_set(en, "Input multiline here.");
    efl_text_font_set(en, "Sans", 14);
    efl_ui_text_interactive_editable_set(en, EINA_TRUE);
    efl_text_wrap_set(en, EFL_TEXT_FORMAT_WRAP_WORD);
@@ -106,7 +106,7 @@ test_efl_ui_text_label(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, voi
    en = _create_label(win, bx);
    markup = efl_text_markup_util_markup_to_text(EFL_TEXT_MARKUP_UTIL_CLASS,
          "You can use markup -&gt; text helpers<ps>to make coding easier.");
-   efl_text_set(en, markup);
+   efl_text_container_text_set(en, markup);
    free(markup);
    efl_text_font_set(en, "Sans", 14);
    efl_text_wrap_set(en, EFL_TEXT_FORMAT_WRAP_WORD);
@@ -202,7 +202,7 @@ test_efl_ui_text(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, void *eve
 
    printf("Added Efl.Ui.Text object\n");
    efl_key_data_set(en, "wrap_idx", 0);
-   efl_text_set(en, "Hello world! Goodbye world! This is a test text for the"
+   efl_text_container_text_set(en, "Hello world! Goodbye world! This is a test text for the"
          " new UI Text widget.\xE2\x80\xA9This is the next paragraph.\nThis"
          " is the next line.\nThis is Yet another line! Line and paragraph"
          " separators are actually different!");
@@ -306,7 +306,7 @@ test_efl_ui_text_async(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, voi
 
    printf("Added Efl.Ui.Text object\n");
    efl_key_data_set(en, "wrap_idx", 0);
-   efl_text_set(en, "Hello world! Goodbye world! This is a test text for the"
+   efl_text_container_text_set(en, "Hello world! Goodbye world! This is a test text for the"
          " new UI Text widget.\xE2\x80\xA9This is the next paragraph.\nThis"
          " is the next line.\nThis is Yet another line! Line and paragraph"
          " separators are actually different!");
@@ -446,7 +446,7 @@ test_ui_text_item_factory(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, 
 
 
    printf("Added Efl.Ui.Text object\n");
-   efl_text_set(en, "Hello world! Goodbye world! This is a test text for the"
+   efl_text_container_text_set(en, "Hello world! Goodbye world! This is a test text for the"
          " new UI Text widget.\xE2\x80\xA9This is the next paragraph.\nThis"
          " is the next line.\nThis is Yet another line! Line and paragraph"
          " separators are actually different!");

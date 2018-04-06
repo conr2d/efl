@@ -32,7 +32,7 @@ _bt2_clicked_cb(void *data, Evas_Object *obj EINA_UNUSED, void *event_info EINA_
                  efl_ui_win_type_set(efl_added, EFL_UI_WIN_DIALOG_BASIC),
                  efl_ui_win_name_set(efl_added, "window-dia-2"),
                  efl_ui_win_autodel_set(efl_added, EINA_TRUE),
-                 efl_text_set(efl_added, "A Fixed Size Dialog"));
+                 efl_text_container_text_set(efl_added, "A Fixed Size Dialog"));
 
    // Notes:
    // - All objects have 0 weight, this makes the window not resizable.
@@ -40,7 +40,7 @@ _bt2_clicked_cb(void *data, Evas_Object *obj EINA_UNUSED, void *event_info EINA_
    //   only set the restricted min size (and combine them for calculation).
 
    lb = efl_add(EFL_UI_TEXT_CLASS, dia,
-                efl_text_set(efl_added, "This is a non-resizable dialog."),
+                efl_text_container_text_set(efl_added, "This is a non-resizable dialog."),
                 efl_gfx_size_hint_min_set(efl_added, size),
                 efl_gfx_size_hint_max_set(efl_added, size),
                 efl_gfx_size_hint_weight_set(efl_added, 0, 0));
@@ -66,7 +66,7 @@ _size_update(void *data, const Efl_Event *ev)
            "Min size: %dx%d (requested) %dx%d (effective)<br>"
            "Max size: %dx%d<br>"
            "Current size: %dx%d", min.w, min.h, cmin.w, cmin.h, max.w, max.h, sz.w, sz.h);
-   //efl_text_set(lbl, buf);
+   //efl_text_container_text_set(lbl, buf);
    elm_object_text_set(lbl, buf);
 }
 
@@ -79,7 +79,7 @@ _bt3_clicked_cb(void *data, Evas_Object *obj EINA_UNUSED, void *event_info EINA_
                  efl_ui_win_type_set(efl_added, EFL_UI_WIN_DIALOG_BASIC),
                  efl_ui_win_name_set(efl_added, "window-dia-3"),
                  efl_ui_win_autodel_set(efl_added, EINA_TRUE),
-                 efl_text_set(efl_added, "Min/Max Size Dialog"));
+                 efl_text_container_text_set(efl_added, "Min/Max Size Dialog"));
 
    //lb = efl_add(EFL_UI_TEXT_CLASS, dia);,
    lb = elm_label_add(dia);
@@ -105,7 +105,7 @@ _bt4_clicked_cb(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, void *even
                  efl_ui_win_type_set(efl_added, EFL_UI_WIN_DIALOG_BASIC),
                  efl_ui_win_name_set(efl_added, "window-dia-4"),
                  efl_ui_win_autodel_set(efl_added, EINA_TRUE),
-                 efl_text_set(efl_added, "Min/Max Size Dialog")
+                 efl_text_container_text_set(efl_added, "Min/Max Size Dialog")
                 );
 
    //lb = efl_add(EFL_UI_TEXT_CLASS, dia);,

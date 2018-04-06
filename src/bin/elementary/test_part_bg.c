@@ -76,7 +76,7 @@ _create_box_contents(Evas_Object *box)
    evas_object_data_set(radio, "data", content);
 
    content = efl_add(EFL_UI_TEXT_CLASS, content,
-                     efl_text_set(efl_added, "box"),
+                     efl_text_container_text_set(efl_added, "box"),
                      efl_ui_text_interactive_editable_set(efl_added, EINA_FALSE),
                      efl_pack_end(content, efl_added));
 
@@ -97,8 +97,8 @@ _create_box_contents(Evas_Object *box)
         content = efl_add(content_class[i], hbox,
                           efl_pack_end(hbox, efl_added));
 
-        if (efl_isa(content, efl_text_interface_get()))
-          efl_text_set(content, "text");
+        if (efl_isa(content, efl_text_container_interface_get()))
+          efl_text_container_text_set(content, "text");
 
         if (efl_isa(content, EFL_UI_IMAGE_CLASS))
           {
@@ -144,7 +144,7 @@ test_part_background(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, void 
    content_class[18] = EFL_UI_SPIN_BUTTON_CLASS;
 
    win = efl_add(EFL_UI_WIN_CLASS, efl_main_loop_get(),
-                 efl_text_set(efl_added, "Widget Part Background"),
+                 efl_text_container_text_set(efl_added, "Widget Part Background"),
                  efl_ui_win_autodel_set(efl_added, EINA_TRUE));
 
    vbox = efl_add(EFL_UI_BOX_CLASS, win,
@@ -158,13 +158,13 @@ test_part_background(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, void 
 
    reset_btn = efl_add(EFL_UI_BUTTON_CLASS, hbox,
                        efl_pack_end(hbox, efl_added),
-                       efl_text_set(efl_added, "reset"));
+                       efl_text_container_text_set(efl_added, "reset"));
    color_btn = efl_add(EFL_UI_BUTTON_CLASS, hbox,
                        efl_pack_end(hbox, efl_added),
-                       efl_text_set(efl_added, "color"));
+                       efl_text_container_text_set(efl_added, "color"));
    scale_btn = efl_add(EFL_UI_BUTTON_CLASS, hbox,
                        efl_pack_end(hbox, efl_added),
-                       efl_text_set(efl_added, "scale_type"));
+                       efl_text_container_text_set(efl_added, "scale_type"));
 
    scr = elm_scroller_add(vbox);
    evas_object_show(scr);

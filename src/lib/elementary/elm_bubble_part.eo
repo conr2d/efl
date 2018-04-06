@@ -3,6 +3,6 @@ class Elm_Bubble.Part (Efl.Ui.Layout.Part_Legacy)
    [[Elementary Bubble internal part class]]
    data: null;
    implements {
-      Efl.Text.text { set; }
+      Efl.Text.Container.text { set; }
    }
 }

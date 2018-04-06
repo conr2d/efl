@@ -44,13 +44,13 @@ _btn_clicked_cb(void *data, Evas_Object *obj, void *event_info EINA_UNUSED)
      {
         //Create Animation Object from Animation
         efl_animation_player_animation_set(ad->anim_obj, ad->parallel_show_anim);
-        efl_text_set(obj, "Start Parallel Group Animation to hide button");
+        efl_text_container_text_set(obj, "Start Parallel Group Animation to hide button");
      }
    else
      {
         //Create Animation Object from Animation
         efl_animation_player_animation_set(ad->anim_obj, ad->parallel_hide_anim);
-        efl_text_set(obj, "Start Parallel Group Animation to show button");
+        efl_text_container_text_set(obj, "Start Parallel Group Animation to show button");
      }
 
    //Let Animation Object start animation

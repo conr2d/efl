@@ -760,7 +760,7 @@ _item_new(Efl_Ui_Multibuttonentry_Data *sd,
    elm_object_part_text_set(VIEW(item), "elm.btn.text", str);
 
    //entry is cleared when text is made to button
-   efl_text_set(sd->entry, "");
+   efl_text_container_text_set(sd->entry, "");
 
    elm_layout_signal_callback_add
      (VIEW(item), "mouse,clicked,1", "*", _on_item_clicked, EO_OBJ(item));
@@ -1038,7 +1038,7 @@ _entry_changed_cb(void *data, const Efl_Event *event EINA_UNUSED)
    EFL_UI_MULTIBUTTONENTRY_DATA_GET_OR_RETURN(data, sd);
    const char *str;
 
-   str = efl_text_get(sd->entry);
+   str = efl_text_container_text_get(sd->entry);
    sd->n_str = str ? strlen(str) : 0;
 }
 
@@ -1062,7 +1062,7 @@ _entry_focus_changed_cb(void *data, const Efl_Event *event)
      {
         const char *str;
 
-        str = efl_text_get(sd->entry);
+        str = efl_text_container_text_get(sd->entry);
         if (str && str[0])
           _item_new(sd, str, MULTIBUTTONENTRY_POS_END, NULL, NULL, NULL);
      }
@@ -1151,7 +1151,7 @@ _entry_key_up_cb(void *data,
 
    if (!sd->box) return;
 
-   str = efl_text_get(sd->entry);
+   str = efl_text_container_text_get(sd->entry);
    if (!str) return;
 
    if (strlen(str) &&
@@ -1443,7 +1443,7 @@ _view_init(Evas_Object *obj, Efl_Ui_Multibuttonentry_Data *sd)
 
    sd->entry = efl_add(EFL_UI_TEXT_CLASS, sd->box,
                        efl_text_multiline_set(efl_added, EINA_FALSE),
-                       efl_text_set(efl_added, ""),
+                       efl_text_container_text_set(efl_added, ""),
                        efl_ui_text_cnp_mode_set(efl_added, EFL_SELECTION_FORMAT_MARKUP),
                        efl_ui_text_input_panel_enabled_set(efl_added, EINA_FALSE),
                        efl_ui_text_interactive_editable_set(efl_added, EINA_TRUE),
@@ -1484,7 +1484,7 @@ _efl_ui_multibuttonentry_text_set(Eo *obj, Efl_Ui_Multibuttonentry_Data *sd EINA
         if (label) _guide_text_set(obj, label);
      }
    else
-     efl_text_set(efl_part(efl_super(obj, MY_CLASS), part), label);
+     efl_text_container_text_set(efl_part(efl_super(obj, MY_CLASS), part), label);
 }
 
 static const char*
@@ -1501,7 +1501,7 @@ _efl_ui_multibuttonentry_text_get(Eo *obj, Efl_Ui_Multibuttonentry_Data *sd, con
         text = sd->guide_text_str;
      }
    else
-     text = efl_text_get(efl_part(efl_super(obj, MY_CLASS), part));
+     text = efl_text_container_text_get(efl_part(efl_super(obj, MY_CLASS), part));
 
    return text;
 }

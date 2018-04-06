@@ -432,7 +432,7 @@ test_efl_ui_calendar(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED, void 
    localtime_r(&current_date, &max_date);
 
    win = efl_add(EFL_UI_WIN_CLASS, efl_main_loop_get(),
-                 efl_text_set(efl_added, "Efl Ui Calendar"),
+                 efl_text_container_text_set(efl_added, "Efl Ui Calendar"),
                  efl_ui_win_autodel_set(efl_added, EINA_TRUE));
 
    box = efl_add(EFL_UI_BOX_CLASS, win,

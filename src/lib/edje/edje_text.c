@@ -142,7 +142,7 @@ _edje_text_fit_x(Edje *ed, Edje_Real_Part *ep,
 
    evas_obj_text_ellipsis_set(ep->object, params->type.text->ellipsis);
    efl_text_font_set(ep->object, font, size);
-   efl_text_set(ep->object, text);
+   efl_text_container_text_set(ep->object, text);
    efl_gfx_object_size_set(ep->object, EINA_SIZE2D(sw,  sh));
 
    return text;
@@ -338,7 +338,7 @@ _edje_text_recalc_apply(Edje *ed, Edje_Real_Part *ep,
 
         if (ep->part->scale) efl_gfx_object_scale_set(ep->object, TO_DOUBLE(sc));
 
-        efl_text_set(ep->object, text);
+        efl_text_container_text_set(ep->object, text);
         /* the fit shoult not depend on font size, because it give the differet
          * size calculation. As base font size for calculate fit size I take
          * 10 (ten), because this value used for calculate fit by Y below */
@@ -369,7 +369,7 @@ _edje_text_recalc_apply(Edje *ed, Edje_Real_Part *ep,
            if (ep->part->scale) efl_gfx_object_scale_set(ep->object, TO_DOUBLE(sc));
 
            efl_text_font_set(ep->object, font, size);
-           efl_text_set(ep->object, text);
+           efl_text_container_text_set(ep->object, text);
         part_get_geometry(ep, &tw, &th);
 
         /* only grow the font size if we didn't already reach the max size
@@ -491,7 +491,7 @@ arrange_text:
    if (ep->part->scale) efl_gfx_object_scale_set(ep->object, TO_DOUBLE(sc));
 
    efl_text_font_set(ep->object, font, size);
-   efl_text_set(ep->object, text);
+   efl_text_container_text_set(ep->object, text);
    part_get_geometry(ep, &tw, &th);
 
    /* Handle alignment */

@@ -46,7 +46,7 @@ test_efl_gfx_map(void *data EINA_UNUSED, Evas_Object *obj EINA_UNUSED,
    char buf[PATH_MAX];
 
    win = efl_add(EFL_UI_WIN_CLASS, efl_main_loop_get(),
-                 efl_text_set(efl_added, "Efl Gfx Map"),
+                 efl_text_container_text_set(efl_added, "Efl Gfx Map"),
                  efl_ui_win_autodel_set(efl_added, EINA_TRUE));
 
    /* image with a min size */
