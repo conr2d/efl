@@ -247,7 +247,7 @@ _efl_suite_build_and_run(int argc, const char **argv, const char *suite_name, co
    int can_fork = 0;
 #ifdef ENABLE_TIMING_INFO
    double tstart, tcstart;
-   int timing = strcmp(suite_name, "eina_init_module") && _timing_enabled();
+   int timing = _timing_enabled();
 
    if (timing)
      tcstart = tstart = _timing_time_get();
@@ -318,7 +318,10 @@ _efl_suite_build_and_run(int argc, const char **argv, const char *suite_name, co
 
 #ifdef ENABLE_TIMING_INFO
    if (timing)
-     printf("SUITE TIME %s: %.5g\n", suite_name, _timing_time_get() - tstart);
+     {
+        printf("SUITE TIME(%u) %s: %.5g\n", getpid(), suite_name, _timing_time_get() - tstart);
+        fflush(stdout);
+     }
 #endif
    return failed_count;
 }
