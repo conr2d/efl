@@ -41,7 +41,7 @@ _efl_canvas_layout_part_text_efl_text_markup_markup_set(Eo *obj,
 
 EOLIAN static Efl_Text_Cursor_Cursor *
 _efl_canvas_layout_part_text_efl_text_cursor_text_cursor_get(Eo *obj,
-      void *_pd EINA_UNUSED, Efl_Text_Cursor_Cursor_Get_Type get_type)
+      void *_pd EINA_UNUSED, Efl_Text_Cursor_Get_Type get_type)
 {
    PROXY_DATA_GET(obj, pd);
    return _edje_text_cursor_get(pd->rp, (int) get_type);
@@ -171,7 +171,7 @@ EOLIAN static Eina_Bool
 _efl_canvas_layout_part_text_efl_text_cursor_cursor_geometry_get(Eo *obj,
       void *_pd EINA_UNUSED,
       const Efl_Text_Cursor_Cursor *cur EINA_UNUSED,
-      Efl_Text_Cursor_Cursor_Type ctype EINA_UNUSED,
+      Efl_Text_Cursor_Type ctype EINA_UNUSED,
       Evas_Coord *cx, Evas_Coord *cy, Evas_Coord *cw, Evas_Coord *ch,
       Evas_Coord *cx2 EINA_UNUSED, Evas_Coord *cy2 EINA_UNUSED,
       Evas_Coord *cw2 EINA_UNUSED, Evas_Coord *ch2 EINA_UNUSED)

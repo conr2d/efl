@@ -1,7 +1,7 @@
 import eina_types;
 import efl_text_types;
 
-enum Efl.Text.Cursor.Cursor_Get_Type {
+enum Efl.Text.Cursor_Get_Type {
    [[All available cursor states]]
    legacy: efl_text_cursor_get;
    default = 0,     [[Main cursor state (alias to "main")]]
@@ -14,7 +14,7 @@ enum Efl.Text.Cursor.Cursor_Get_Type {
    user_extra       [[User extra cursor state]]
 }
 
-enum Efl.Text.Cursor.Cursor_Type
+enum Efl.Text.Cursor_Type
 {
    [[Text cursor types]]
    legacy: efl_text_cursor_type;
@@ -39,7 +39,7 @@ interface Efl.Text.Cursor {
             return: ptr(Efl.Text.Cursor.Cursor); [[Text cursor object]]
          }
          keys {
-            get_type: Efl.Text.Cursor.Cursor_Get_Type; [[Cursor type]]
+            get_type: Efl.Text.Cursor_Get_Type; [[Cursor type]]
          }
       }
       @property cursor_position {
@@ -80,7 +80,7 @@ interface Efl.Text.Cursor {
          }
          keys {
             @cref cur: Efl.Text.Cursor.Cursor; [[Cursor object]]
-            ctype: Efl.Text.Cursor.Cursor_Type; [[The type of the cursor.]]
+            ctype: Efl.Text.Cursor_Type; [[The type of the cursor.]]
          }
          values {
             cx: int; [[The x of the cursor (or upper cursor)]]
