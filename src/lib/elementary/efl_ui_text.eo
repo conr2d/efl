@@ -3,7 +3,7 @@ import elm_general;
 
 class Efl.Ui.Text (Efl.Ui.Layout.Object, Elm.Interface_Scrollable, Efl.Ui.Clickable,
                  Efl.Access.Text, Efl.Access.Editable.Text, Efl.File,
-                 Efl.Ui.Selectable, Efl.Ui.Scrollable, Efl.Ui.Text.Interactive)
+                 Efl.Ui.Selectable, Efl.Ui.Scrollable, Efl.Text.Container_Interactive)
 {
    [[Efl UI text class]]
    methods {
@@ -362,7 +362,7 @@ class Efl.Ui.Text (Efl.Ui.Layout.Object, Elm.Interface_Scrollable, Efl.Ui.Clicka
       Efl.Access.Editable.Text.delete;
       Efl.Access.Editable.Text.paste;
       Efl.File.file { get; set; }
-      Efl.Ui.Text.Interactive.editable { set; }
+      Efl.Text.Container_Interactive.editable { set; }
    }
    events {
       activated; [[Called when entry is activated]]

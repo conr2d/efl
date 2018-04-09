@@ -1,6 +1,6 @@
 import efl_text_types;
 
-interface Efl.Ui.Text.Interactive (Efl.Text.Container, Efl.Text.Font,
+interface Efl.Text.Container_Interactive (Efl.Text.Container, Efl.Text.Font,
    Efl.Text.Format, Efl.Text.Style)
 {
    [[This is an interface interactive text inputs should implement]]

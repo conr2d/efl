@@ -1446,7 +1446,7 @@ _view_init(Evas_Object *obj, Efl_Ui_Multibuttonentry_Data *sd)
                        efl_text_container_text_set(efl_added, ""),
                        efl_ui_text_cnp_mode_set(efl_added, EFL_SELECTION_FORMAT_MARKUP),
                        efl_ui_text_input_panel_enabled_set(efl_added, EINA_FALSE),
-                       efl_ui_text_interactive_editable_set(efl_added, EINA_TRUE),
+                       efl_text_container_interactive_editable_set(efl_added, EINA_TRUE),
                        efl_composite_attach(obj, efl_added));
 
    evas_object_size_hint_min_set(sd->entry, MIN_W_ENTRY, 0);
