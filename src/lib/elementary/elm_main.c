@@ -1605,22 +1605,31 @@ elm_object_focus_custom_chain_set(Evas_Object *obj,
                                   Eina_List   *objs EINA_UNUSED)
 {
    EINA_SAFETY_ON_NULL_RETURN(obj);
-   ERR("Focus-chain not supported");
+   ELM_WIDGET_DATA_GET_OR_RETURN(obj, pd);
+   EINA_SAFETY_ON_FALSE_RETURN(elm_widget_is_legacy(obj));
+
+   pd->legacy_focus.custom_chain = eina_list_free(pd->legacy_focus.custom_chain);
+   pd->legacy_focus.custom_chain = objs;
 }
 
 EAPI void
 elm_object_focus_custom_chain_unset(Evas_Object *obj)
 {
    EINA_SAFETY_ON_NULL_RETURN(obj);
-   ERR("Focus-chain not supported");
+   ELM_WIDGET_DATA_GET_OR_RETURN(obj, pd);
+   EINA_SAFETY_ON_FALSE_RETURN(elm_widget_is_legacy(obj));
+
+   pd->legacy_focus.custom_chain = eina_list_free(pd->legacy_focus.custom_chain);
 }
 
 EAPI const Eina_List *
 elm_object_focus_custom_chain_get(const Evas_Object *obj)
 {
    EINA_SAFETY_ON_NULL_RETURN_VAL(obj, NULL);
-   ERR("Focus-chain not supported");
-   return NULL;
+   ELM_WIDGET_DATA_GET_OR_RETURN(obj, pd, NULL);
+   EINA_SAFETY_ON_FALSE_RETURN_VAL(elm_widget_is_legacy(obj), NULL);
+
+   return pd->legacy_focus.custom_chain;
 }
 
 EAPI void
@@ -1629,7 +1638,10 @@ elm_object_focus_custom_chain_append(Evas_Object *obj,
                                      Evas_Object *relative_child EINA_UNUSED)
 {
    EINA_SAFETY_ON_NULL_RETURN(obj);
-   ERR("Focus-chain not supported");
+   ELM_WIDGET_DATA_GET_OR_RETURN(obj, pd);
+   EINA_SAFETY_ON_FALSE_RETURN(elm_widget_is_legacy(obj));
+
+   pd->legacy_focus.custom_chain = eina_list_append_relative(pd->legacy_focus.custom_chain, child, relative_child);
 }
 
 EAPI void
@@ -1638,7 +1650,10 @@ elm_object_focus_custom_chain_prepend(Evas_Object *obj,
                                       Evas_Object *relative_child EINA_UNUSED)
 {
    EINA_SAFETY_ON_NULL_RETURN(obj);
-   ERR("Focus-chain not supported");
+   ELM_WIDGET_DATA_GET_OR_RETURN(obj, pd);
+   EINA_SAFETY_ON_FALSE_RETURN(elm_widget_is_legacy(obj));
+
+   pd->legacy_focus.custom_chain = eina_list_prepend_relative(pd->legacy_focus.custom_chain, child, relative_child);
 }
 
 EINA_DEPRECATED EAPI void
@@ -1664,7 +1679,19 @@ elm_object_focus_next_object_get(const Evas_Object  *obj,
 {
    Efl_Ui_Widget *top = elm_object_top_widget_get(obj);
    EINA_SAFETY_ON_NULL_RETURN_VAL(obj, NULL);
+   ELM_WIDGET_DATA_GET_OR_RETURN(obj, pd, NULL);
+   EINA_SAFETY_ON_FALSE_RETURN_VAL(elm_widget_is_legacy(obj), NULL);
 
+   #define MAP(direction, field)  if (dir == EFL_UI_FOCUS_DIRECTION_ ##direction && pd->legacy_focus.field) return pd->legacy_focus.field;
+
+   MAP(PREVIOUS, prev)
+   MAP(NEXT, next)
+   MAP(UP, up)
+   MAP(DOWN, down)
+   MAP(LEFT, left)
+   MAP(RIGHT, right)
+
+   #undef MAP
    return efl_ui_focus_manager_request_move(efl_ui_focus_util_active_manager(EFL_UI_FOCUS_UTIL_CLASS, top), dir, NULL, EINA_FALSE);
 }
 
@@ -1674,7 +1701,20 @@ elm_object_focus_next_object_set(Evas_Object        *obj,
                                  Elm_Focus_Direction dir EINA_UNUSED)
 {
    EINA_SAFETY_ON_NULL_RETURN(obj);
-   ERR("setting explicit objects not allowed not supported");
+   ELM_WIDGET_DATA_GET_OR_RETURN(obj, pd);
+   EINA_SAFETY_ON_FALSE_RETURN(elm_widget_is_legacy(obj));
+
+   #define MAP(direction, field)  if (dir == EFL_UI_FOCUS_DIRECTION_ ##direction) pd->legacy_focus.field = next;
+
+   MAP(PREVIOUS, prev)
+   MAP(NEXT, next)
+   MAP(UP, up)
+   MAP(DOWN, down)
+   MAP(LEFT, left)
+   MAP(RIGHT, right)
+
+   #undef MAP
+
 }
 
 EAPI Elm_Object_Item *

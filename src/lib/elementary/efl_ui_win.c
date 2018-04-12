@@ -1720,6 +1720,10 @@ _key_action_move(Evas_Object *obj, const char *params)
      focus_dir = EFL_UI_FOCUS_DIRECTION_DOWN;
    else return EINA_FALSE;
 
+
+  //FIXME insert code here
+
+
    o = efl_ui_focus_manager_move(obj, focus_dir);
 
    if (!o)
