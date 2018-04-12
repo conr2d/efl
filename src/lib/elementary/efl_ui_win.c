@@ -1705,6 +1705,7 @@ _key_action_move(Evas_Object *obj, const char *params)
 
    Efl_Ui_Focus_Direction focus_dir;
    Efl_Ui_Focus_Object *o;
+   Eina_Bool legacy_focus_move = EINA_FALSE;
 
    if (!strcmp(dir, "previous"))
      focus_dir = EFL_UI_FOCUS_DIRECTION_PREVIOUS;
@@ -1722,9 +1723,27 @@ _key_action_move(Evas_Object *obj, const char *params)
 
 
   //FIXME insert code here
+  {
+     Efl_Ui_Focus_Object *regular, *logical;
+     Efl_Ui_Focus_Manager *manager_top = efl_ui_focus_util_active_manager(EFL_UI_FOCUS_UTIL_CLASS, obj);
+     regular = efl_ui_focus_manager_request_move(manager_top, focus_dir, NULL, EINA_FALSE);
+     logical = efl_ui_focus_manager_focus_get(manager_top);
 
-
-   o = efl_ui_focus_manager_move(obj, focus_dir);
+     do
+       {
+          Efl_Ui_Focus_Object *legacy_target = legacy_elm_widget_next_targer(logical, focus_dir);
+          if (legacy_target)
+            {
+               efl_ui_focus_util_focus(EFL_UI_FOCUS_UTIL_CLASS, legacy_target);
+               legacy_focus_move = EINA_TRUE;
+               break;
+            }
+          logical = efl_ui_focus_manager_request_move(manager_top, focus_dir, logical, EINA_TRUE);
+       }
+     while (logical != regular);
+  }
+  if (!legacy_focus_move)
+    o = efl_ui_focus_manager_move(obj, focus_dir);
 
    if (!o)
      {

@@ -17,24 +17,38 @@ legacy_elm_widget_next_targer(Efl_Ui_Widget *obj, Elm_Focus_Direction dir)
         Efl_Ui_Widget *parent;
         //consider custom chain
         parent = elm_widget_parent_get(obj);
-        ELM_WIDGET_DATA_GET_OR_RETURN(parent, ppd, NULL)
-
-        if (ppd->legacy_focus.custom_chain)
+        if (parent)
           {
-             Eina_List *node;
+             ELM_WIDGET_DATA_GET_OR_RETURN(parent, ppd, NULL)
 
-             node = eina_list_data_find_list(ppd->legacy_focus.custom_chain, obj);
-             if (!node)
-               {
-                  ERR("Node is not in the custom chain of the parent");
-                  return NULL;
-               }
-             if (dir == EFL_UI_FOCUS_DIRECTION_NEXT) target = eina_list_data_get(eina_list_next(node));
-             if (dir == EFL_UI_FOCUS_DIRECTION_PREVIOUS) target = eina_list_data_get(eina_list_prev(node));
+              if (ppd->legacy_focus.custom_chain)
+                {
+                   Eina_List *node;
+
+                   node = eina_list_data_find_list(ppd->legacy_focus.custom_chain, obj);
+                   if (!node)
+                     {
+                        ERR("Node is not in the custom chain of the parent");
+                        return NULL;
+                     }
+                   if (dir == EFL_UI_FOCUS_DIRECTION_NEXT) target = eina_list_data_get(eina_list_next(node));
+                   if (dir == EFL_UI_FOCUS_DIRECTION_PREVIOUS) target = eina_list_data_get(eina_list_prev(node));
+                }
           }
-
      }
+
+   #define MAP(direction, field)  if (dir == EFL_UI_FOCUS_DIRECTION_ ##direction && pd->legacy_focus.field) target = pd->legacy_focus.field;
+
    if (!target)
-     return elm_object_focus_next_object_get(obj, dir);
-   return NULL;
+     {
+        MAP(PREVIOUS, prev)
+        MAP(NEXT, next)
+        MAP(UP, up)
+        MAP(DOWN, down)
+        MAP(LEFT, left)
+        MAP(RIGHT, right)
+     }
+   #undef MAP
+
+   return target;
 }
